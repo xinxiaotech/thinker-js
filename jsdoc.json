@@ -1,0 +1,15 @@
+{
+  "tags": {
+    "allowUnknownTags": false
+  },
+  "opts": {
+    "destination": "./docs"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  }
+}
