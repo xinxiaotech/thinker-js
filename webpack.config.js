@@ -22,10 +22,20 @@ config = {
     path: sysPath.resolve('./dist'),
     publicPath: '/',
     filename: '[name].js',
-    library: 'thinkerjs'
+    library: 'Thinker',
+    libraryTarget: 'umd'
   },
-  externals: {
-    'lodash': '_'
+  externals: (context, request, callback) => {
+    if (/^lodash\//.test(request)) {
+      callback(null, {
+        commonjs2: request,
+        commonjs: request,
+        amd: request,
+        root: ['_', request.replace(/^lodash\//, '')]
+      })
+    } else {
+      callback()
+    }
   },
   devtool: 'source-map'
 }
