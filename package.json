@@ -2,7 +2,7 @@
   "name": "thinker-js",
   "version": "0.0.1",
   "description": "Another synchronization framework",
-  "main": "lib/index.js",
+  "main": "dist/main.js",
   "scripts": {
     "test": "jest",
     "opendoc": "gulp doc && open docs/classes.list.html",
@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "babel-jest": "^16.0.0",
+    "babel-loader": "^6.2.5",
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-plugin-transform-strict-mode": "^6.11.3",
     "babel-preset-es2015": "^6.16.0",
@@ -44,6 +45,7 @@
     "gulp-jsdoc3": "^1.0.0",
     "jest": "^16.0.1",
     "lodash": "4.15.0",
-    "lolex": "1.5.1"
+    "lolex": "1.5.1",
+    "webpack": "^1.13.2"
   }
 }

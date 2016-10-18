@@ -2,7 +2,17 @@ gulp = require 'gulp'
 gulp_jsdoc = require 'gulp-jsdoc3'
 gulp_babel = require 'gulp-babel'
 
+webpack = require 'webpack'
+
 jsdocConfig = require './jsdoc.json'
+webpackConfig = require './webpack.config'
+webpackCompiler = webpack webpackConfig
+
+gulp.task 'build:scripts', (done) ->
+  webpackCompiler.run (err, stats) ->
+    throw new gulp_util.PluginError("webpack", err) if err
+    console.log(stats.toString colors: true, chunks: false)
+    done()
 
 gulp.task 'doc', (cb) ->
   compileBabel = ->
@@ -18,7 +28,7 @@ gulp.task 'doc', (cb) ->
 
   gulp.series(compileBabel, compileDoc)(cb)
 
-gulp.task 'build', gulp.parallel('doc')
+gulp.task 'build', gulp.parallel('doc', 'build:scripts')
 
 gulp.task 'watch', ->
   gulp.watch './src/**/*', gulp.parallel('build')
