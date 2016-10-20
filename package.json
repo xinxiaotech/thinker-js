@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "opendoc": "gulp doc && open docs/classes.list.html",
-    "start": "gulp"
+    "start": "gulp",
+    "build": "yarn add webpack --dev && yarn webpack"
   },
   "keywords": [
     "synchronization",

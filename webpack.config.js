@@ -1,9 +1,9 @@
 const _ = require('lodash')
-const sysPath = require('path')
+const path = require('path')
 const webpack = require('webpack')
 
 config = {
-  context: sysPath.resolve('.'),
+  context: path.resolve('.'),
   entry: ['./lib/index.js'],
   resolveLoader: {
     modulesDirectories: ['node_modules']
@@ -14,12 +14,12 @@ config = {
   module: {
     loaders: [{
       test: /\.js$/,
-      exclude: /(node_modules|bower_components)/,
+      exclude: [path.resolve(__dirname, 'node_modules')],
       loader: 'babel',
     }]
   },
   output: {
-    path: sysPath.resolve('./dist'),
+    path: path.resolve('./dist'),
     publicPath: '/',
     filename: '[name].js',
     library: 'Thinker',
