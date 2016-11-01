@@ -102,6 +102,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return memo;
 	};
 	
+	/**
+	 * 监听事件
+	 *
+	 * @param {string} eventName - 事件名称
+	 * @param {Function} callback - 回调函数
+	 *
+	 * @function on
+	 * @memberof Thinker#
+	 */
+	
+	/**
+	 * 取消监听事件
+	 *
+	 * @param {string} eventName - 事件名称
+	 * @param {Function} callback - 回调函数
+	 *
+	 * @function off
+	 * @memberof Thinker#
+	 */
+	
 	var Thinker = function (_EventEmitter) {
 	  _inherits(Thinker, _EventEmitter);
 	
@@ -124,6 +144,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _this._nextSync = [];
 	    _this._currentSync = [];
 	    _this._syncCallbacks = [];
+	    _this._doDebounceTimer = null;
+	    _this._statusBackToWaitingTimer = null;
+	    _this._doSyncRetryInfo = null;
 	
 	    _this.once('backgroundInitializeCompletelySyncSucceed', function () {
 	      _this.backgroundInitializeCompletelySyncSucceed = true;
@@ -131,7 +154,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    // 如果后台完整同步在之前就已经完成了，那么告知调用者也是越早越好
 	    if (_this.initOption.storage.getItem(CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY) === 'true') {
-	      // @event backgroundInitializeCompletelySyncSucceed
+	      /**
+	       * 在后台初次完整同步后触发
+	       *
+	       * @event Thinker#backgroundInitializeCompletelySyncSucceed
+	       */
 	      _this.trigger('backgroundInitializeCompletelySyncSucceed');
 	    }
 	    return _this;
@@ -157,9 +184,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	
 	      if (_includes(['waiting', 'succeed', 'failed'], this.status)) {
-	        this.status = 'preparing';
-	        // @event 'preparing'
-	        this.trigger('preparing');
+	        /**
+	         * `Thinker#status` 变为 `preparing` 时触发
+	         *
+	         * @event Thinker#preparing
+	         */
+	        this._changeStatus('preparing');
 	        clearTimeout(this._statusBackToWaitingTimer);
 	        this._syncCallbacks.push(cb);
 	        this._currentSync.push({ reason: reason, passInOption: passInOption });
@@ -172,6 +202,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else {
 	        this._syncCallbacks.push(cb);
 	        this._nextSync.push({ reason: reason, passInOption: passInOption });
+	      }
+	
+	      if (this._doSyncRetryInfo && this._doSyncRetryInfo.triedTimes() > 1 && !this._doSyncRetryInfo.isCanceled()) {
+	        this._doSyncRetryInfo.cancel();
 	      }
 	    }
 	  }, {
@@ -186,23 +220,40 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var syncInfo = { passInOptions: passInOptions, isFirstTime: this.lastSuccessTime == null };
 	      var option = _extend({ syncAllData: false }, { syncAllData: _some(passInOptions, 'syncAllData') });
 	
+	      var tryToStartSecondSync = function tryToStartSecondSync(catchingError) {
+	        return function (passInObj) {
+	          if (_isEmpty(_this2._nextSync)) {
+	            if (catchingError) {
+	              return Promise.reject(passInObj);
+	            } else {
+	              return passInObj;
+	            }
+	          }
+	
+	          _this2._currentSync = _this2._nextSync;
+	          _this2._nextSync = [];
+	          return _this2._callSync(time + 1);
+	        };
+	      };
+	
 	      this.status = 'blocking';
-	      // @event 'blocking'
-	      this.trigger('blocking');
+	      /**
+	       * `Thinker#status` 变为 `blocking` 时触发
+	       *
+	       * @event Thinker#blocking
+	       */
+	      this._changeStatus('blocking');
 	      return this._waitUntilCanSync(syncInfo).then(function () {
 	        _this2.status = 'processing';
-	        // @event 'processing'
-	        _this2.trigger('processing');
+	        /**
+	         * `Thinker#status` 变为 `processing` 时触发
+	         *
+	         * @event Thinker#processing
+	         */
+	        _this2._changeStatus('processing');
 	        _this2.initOption.logger.log('[Thinker] start(' + time + '), reasons: \n  - ' + reasons.join('\n  - '));
 	        return _this2._doSync(syncInfo, option);
-	      }).then(function () {
-	        if (_isEmpty(_this2._nextSync)) {
-	          return;
-	        }
-	        _this2._currentSync = _this2._nextSync;
-	        _this2._nextSync = [];
-	        return _this2._callSync(time + 1);
-	      });
+	      }).then(tryToStartSecondSync(false), tryToStartSecondSync(true));
 	    }
 	  }, {
 	    key: '_fireSync',
@@ -212,8 +263,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var autoSwitchStatus = function autoSwitchStatus() {
 	        _this3._statusBackToWaitingTimer = setTimeout(function () {
 	          _this3.status = 'waiting';
-	          // @event 'waiting'
-	          _this3.trigger('waiting');
+	          /**
+	           * `Thinker#status` 变为 `waiting` 时触发
+	           *
+	           * @event Thinker#waiting
+	           */
+	          _this3._changeStatus('waiting');
 	        }, 1000 * 2);
 	      };
 	
@@ -223,8 +278,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var syncCallbacks = _this3._syncCallbacks;
 	        _this3._syncCallbacks = [];
 	        _this3.status = 'succeed';
-	        // @event 'succeed'
-	        _this3.trigger('succeed');
+	        /**
+	         * `Thinker#status` 变为 `succeed` 时触发
+	         *
+	         * @event Thinker#succeed
+	         */
+	        _this3._changeStatus('succeed');
 	        _this3.initOption.logger.log('[Thinker] succeed');
 	        syncCallbacks.forEach(function (cb) {
 	          return typeof cb === 'function' && cb();
@@ -233,8 +292,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var syncCallbacks = _this3._syncCallbacks;
 	        _this3._syncCallbacks = [];
 	        _this3.status = 'failed';
-	        // @event 'failed'
-	        _this3.trigger('failed', [err]);
+	        /**
+	         * `Thinker#status` 变为 `failed` 时触发
+	         *
+	         * @event Thinker#failed
+	         */
+	        _this3._changeStatus('failed', [err]);
 	        _this3.initOption.logger.log('[Thinker] failed');
 	        syncCallbacks.forEach(function (cb) {
 	          return typeof cb === 'function' && cb(err);
@@ -254,6 +317,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'isDoing',
 	    value: function isDoing() {
 	      return _includes(['preparing', 'blocking', 'processing']);
+	    }
+	  }, {
+	    key: '_changeStatus',
+	    value: function _changeStatus(newStatus) {
+	      this.status = newStatus;
+	      this.trigger(newStatus);
+	      /**
+	       * @event Thinker#statusChange
+	       * @param {string} newStatus
+	       * @description `Thinker#status` 改变成任何状态时，在以状态名为名的事件触发后再触发
+	       *
+	       * ```javascript
+	       * thinker.on('succeed', () => {
+	       *   console.log('thinker succeed')
+	       * })
+	       * thinker.on('statusChange', (statusName) => {
+	       *   if (statusName === 'succeed') {
+	       *     console.log('thinker change status succeed')
+	       *   }
+	       * })
+	       *
+	       * // output:
+	       * // thinker succeed
+	       * // thinker change status succeed
+	       * ```
+	       */
+	      this.trigger('statusChange', [newStatus]);
 	    }
 	  }, {
 	    key: '_waitUntilCanSync',
@@ -294,8 +384,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var requestConfig = { url: requestUrl, method: 'POST', data: requestData, params: null };
 	
 	        if (_this5.initOption.autoRetryRequestCount) {
-	          // TODO: 当第二次同步请求发出时，取消之前的 delayRetry
-	          return utils.delayRetry(function (retryTime) {
+	          _this5._doSyncRetryInfo = utils.delayRetry(function (retryTime) {
 	            _this5.initOption.logger.log('[Thinker] request retry(' + retryTime + ')', requestConfig);
 	            return _this5.initOption._sendRequestAsync(syncInfo, _cloneDeep(requestConfig)).then(function (resp) {
 	              resp.config = requestConfig;
@@ -305,6 +394,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              return Promise.reject(err);
 	            });
 	          }, { maxRetryCount: _this5.initOption.autoRetryRequestCount });
+	          return _this5._doSyncRetryInfo.promise;
 	        } else {
 	          return _this5.initOption._sendRequestAsync(syncInfo, _cloneDeep(requestConfig)).then(function (resp) {
 	            resp.config = requestConfig;
@@ -977,6 +1067,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
 	var _extend = __webpack_require__(4);
 	var _map = __webpack_require__(5);
 	var _toPairs = __webpack_require__(6);
@@ -984,6 +1076,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _isString = __webpack_require__(8);
 	
 	var utils = {
+	  isPromise: function isPromise(obj) {
+	    return obj && typeof obj.then === 'function';
+	  },
 	  denodify: function denodify(owner, fnName) {
 	    return function () {
 	      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
@@ -1017,6 +1112,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	    return result;
 	  },
+	  try: function _try(fn) {
+	    for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+	      args[_key2 - 1] = arguments[_key2];
+	    }
+	
+	    if (args.length === 1 && Array.isArray(args[0])) {
+	      args = args[0];
+	    }
+	
+	    return new Promise(function (resolve, reject) {
+	      var result = fn.apply(undefined, _toConsumableArray(args));
+	      if (!utils.isPromise(result)) {
+	        result = Promise.resolve(result);
+	      }
+	      result.then(resolve, reject);
+	    });
+	  },
 	
 	
 	  // 1,  3,  30,  90, 900, 2700, 27000, 81000, 810000
@@ -1026,35 +1138,59 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // @param {Function} fn - 要自动重试的函数
 	  // @param {Object} passInOption
 	  // @param {Number} passInOption.maxRetryCount - 最大自动重试数，如果为 0 就无限重试，默认为 5
-	  // @return {Promsie} promise
-	  // @return {Function} promise.cancel - 终止重试流程
+	  // @return {Object} obj
+	  // @return {Promsie} obj.promise - 重试流程的 Promise ，只有在重试成功、重试次数到达上限、重试流程被终止时才会结束
+	  // @return {Function} obj.cancel - 终止重试流程
+	  // @return {Function} obj.isCanceled - 重试流程是否已经被终止
+	  // @return {Function} obj.triedTimes - 已经重试多少次
 	  delayRetry: function () {
 	    var defaultOption = { maxRetryCount: 5 };
 	
 	    return function (fn, passInOption, _internalState) {
-	      fn = typeof fn === 'function' ? fn : function () {};
-	      _internalState = _internalState || { retriedTimes: 0, lastOutSecond: 0.1, canceled: false };
-	      var option = _extend({}, defaultOption, passInOption);
+	      var defer = utils.pending();
 	
-	      var promise = Promise.resolve(fn(_internalState.retriedTimes + 1)).catch(function (err) {
-	        if (_internalState.retriedTimes >= option.maxRetryCount || _internalState.canceled) {
-	          return Promise.reject(err);
-	        } else {
-	          _internalState.retriedTimes += 1;
-	          _internalState.lastOutSecond = _internalState.lastOutSecond * (_internalState.retriedTimes % 2 ? 10 : 3);
-	          return new Promise(function (resolve, reject) {
-	            setTimeout(function () {
-	              utils.delayRetry(fn, option, _internalState).then(resolve, reject);
-	            }, _internalState.lastOutSecond * 1000);
-	          });
+	      if (_internalState.canceled) {
+	        defer.reject(_internalState.lastTimeFailedReason);
+	      } else {
+	        (function () {
+	          fn = typeof fn === 'function' ? fn : function () {};
+	          _internalState = _internalState || { retriedTimes: 0, lastOutSecond: 0.1, canceled: false, lastTimeFailedReason: null };
+	          var option = _extend({}, defaultOption, passInOption);
+	
+	          utils.try(fn, _internalState.retriedTimes + 1).catch(function (err) {
+	            _internalState.lastTimeFailedReason = err;
+	            if (_internalState.retriedTimes >= option.maxRetryCount || _internalState.canceled) {
+	              return Promise.reject(err);
+	            } else {
+	              _internalState.retriedTimes += 1;
+	              _internalState.lastOutSecond = _internalState.lastOutSecond * (_internalState.retriedTimes % 2 ? 10 : 3);
+	              return new Promise(function (resolve, reject) {
+	                setTimeout(function () {
+	                  utils.delayRetry(fn, option, _internalState).promise.then(resolve, reject);
+	                }, _internalState.lastOutSecond * 1000);
+	              });
+	            }
+	          }).then(defer.resolve, defer.reject);
+	        })();
+	      }
+	
+	      return {
+	        promise: defer.promise,
+	        isCanceled: function isCanceled() {
+	          return _internalState.canceled;
+	        },
+	        triedTimes: function triedTimes() {
+	          return _internalState.retriedTimes;
+	        },
+	        cancel: function cancel() {
+	          if (_internalState.lastTimeFailedReason == null) {
+	            defer.reject();
+	          } else {
+	            defer.reject(_internalState.lastTimeFailedReason);
+	          }
+	          _internalState.canceled = true;
 	        }
-	      });
-	
-	      promise.cancel = function () {
-	        _internalState.canceled = true;
 	      };
-	
-	      return promise;
 	    };
 	  }(),
 	
