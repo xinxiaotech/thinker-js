@@ -304,20 +304,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	      }).then(autoSwitchStatus, autoSwitchStatus);
 	    }
-	
-	    /**
-	     * 用于确认是否正在一次同步中
-	     *
-	     * @function isDoing
-	     * @memberof Thinker#
-	     * @return {Boolean}
-	     */
-	
-	  }, {
-	    key: 'isDoing',
-	    value: function isDoing() {
-	      return _includes(['preparing', 'blocking', 'processing']);
-	    }
 	  }, {
 	    key: '_changeStatus',
 	    value: function _changeStatus(newStatus) {
