@@ -183,6 +183,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        throw new Error('[Thinker] reason is required');
 	      }
 	
+	      var debounceSeconds = this.initOption.debounce;
+	      if (passInOption && passInOption.debounce !== null) {
+	        debounceSeconds = passInOption.debounce;
+	      }
+	
 	      if (_includes(['waiting', 'succeed', 'failed'], this.status)) {
 	        /**
 	         * `Thinker#status` 变为 `preparing` 时触发
@@ -193,12 +198,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        clearTimeout(this._statusBackToWaitingTimer);
 	        this._syncCallbacks.push(cb);
 	        this._currentSync.push({ reason: reason, passInOption: passInOption });
-	        this._doDebounceTimer = setTimeout(this._fireSync.bind(this), this.initOption.debounceWait);
+	        this._doDebounceTimer = setTimeout(this._fireSync.bind(this), debounceSeconds);
 	      } else if (_includes(['preparing', 'blocking'], this.status)) {
 	        clearTimeout(this._doDebounceTimer);
 	        this._syncCallbacks.push(cb);
 	        this._currentSync.push({ reason: reason, passInOption: passInOption });
-	        this._doDebounceTimer = setTimeout(this._fireSync.bind(this), this.initOption.debounceWait);
+	        this._doDebounceTimer = setTimeout(this._fireSync.bind(this), debounceSeconds);
 	      } else {
 	        this._syncCallbacks.push(cb);
 	        this._nextSync.push({ reason: reason, passInOption: passInOption });
@@ -342,8 +347,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            defer.resolve();
 	          } else {
 	            var reason = _isString(canStartSyncNow) ? canStartSyncNow : 'some reason';
-	            _this4.initOption.logger.log('[Thinker] sync blocked by ' + reason + ', will try again after ' + _this4.initOption.debounceWait / 1000 + ' seconds');
-	            setTimeout(tryStartSync, _this4.initOption.debounceWait);
+	            _this4.initOption.logger.log('[Thinker] sync blocked by ' + reason + ', will try again after ' + _this4.initOption.blockRetryInterval / 1000 + ' seconds');
+	            setTimeout(tryStartSync, _this4.initOption.blockRetryInterval);
 	          }
 	        });
 	      };
@@ -1323,7 +1328,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * 默认的初始化设置项
 	 *
 	 * @property {String} [apiPrefix=https://api-ng.pomotodo.com] - 发起同步时要请求的服务器地址
-	 * @property {Number} [debounceWait=5000] - 在多久时间内多次调用 `do()` 会合并为一次同步请求，单位：秒
+	 * @property {Number} [debounce=5000] - 在多久时间内多次调用 `do()` 会合并为一次同步请求，单位：毫秒
+	 * @property {Number} [blockRetryInterval=5000] - 被 `canStartSyncNow()` 阻塞同步多久后再调用 `canStartSyncNow()`，单位：毫
 	 * @property {Thinker~Logger} logger - 日志收集器
 	 * @property {Storage} storage - 读写本地存储，实现了 {@link https://developer.mozilla.org/en-US/docs/Web/API/Storage Storage 接口}的对象
 	 * @property {Boolean} [autoBackgroundCompletelySync=true] - 是否自动发起后台初次完整同步
@@ -1342,7 +1348,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	module.exports = {
 	  apiPrefix: 'https://api-ng.pomotodo.com',
-	  debounceWait: 1000 * 5,
+	  debounce: 1000 * 5,
+	  blockRetryInterval: 1000 * 5,
 	  logger: new Logger(),
 	  storage: root.localStorage || new MemoryStorage(),
 	  autoBackgroundCompletelySync: true,
