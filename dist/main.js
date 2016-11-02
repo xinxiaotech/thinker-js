@@ -1135,7 +1135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return function (fn, passInOption, _internalState) {
 	      var defer = utils.pending();
 	
-	      if (_internalState.canceled) {
+	      if (_internalState && _internalState.canceled) {
 	        defer.reject(_internalState.lastTimeFailedReason);
 	      } else {
 	        (function () {
