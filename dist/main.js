@@ -521,7 +521,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              if (!memo[action]) {
 	                memo[action] = {};
 	              }
-	              memo[action][itemId] = _this6.initOption._deserializeItemAsync(type, action, requestItem, localItem, serverItem);
+	              memo[action][itemId] = _this6.initOption._deserializeItemAsync(syncInfo, type, action, requestItem, localItem, serverItem);
 	              return memo;
 	            }, {});
 	            var deserializingActionGroups = _reduce(deserializingActionPromiseGroups, function (memo, promises, action) {
