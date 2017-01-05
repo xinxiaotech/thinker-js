@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/keys"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
+		module.exports = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/uniq"), require("lodash/keys"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
 	else if(typeof define === 'function' && define.amd)
-		define(["lodash/extend", "lodash/map", "lodash/toPairs", "lodash/fromPairs", "lodash/isString", "lodash/keys", "lodash/includes", "lodash/forEach", "lodash/isEmpty", "lodash/some", "lodash/reduce", "lodash/filter", "lodash/mapValues", "lodash/cloneDeep"], factory);
+		define(["lodash/extend", "lodash/map", "lodash/toPairs", "lodash/fromPairs", "lodash/isString", "lodash/uniq", "lodash/keys", "lodash/includes", "lodash/forEach", "lodash/isEmpty", "lodash/some", "lodash/reduce", "lodash/filter", "lodash/mapValues", "lodash/cloneDeep"], factory);
 	else if(typeof exports === 'object')
-		exports["Thinker"] = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/keys"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
+		exports["Thinker"] = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/uniq"), require("lodash/keys"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
 	else
-		root["Thinker"] = factory(root["_"]["extend"], root["_"]["map"], root["_"]["toPairs"], root["_"]["fromPairs"], root["_"]["isString"], root["_"]["keys"], root["_"]["includes"], root["_"]["forEach"], root["_"]["isEmpty"], root["_"]["some"], root["_"]["reduce"], root["_"]["filter"], root["_"]["mapValues"], root["_"]["cloneDeep"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__) {
+		root["Thinker"] = factory(root["_"]["extend"], root["_"]["map"], root["_"]["toPairs"], root["_"]["fromPairs"], root["_"]["isString"], root["_"]["uniq"], root["_"]["keys"], root["_"]["includes"], root["_"]["forEach"], root["_"]["isEmpty"], root["_"]["some"], root["_"]["reduce"], root["_"]["filter"], root["_"]["mapValues"], root["_"]["cloneDeep"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_24__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -80,24 +80,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	var errors = __webpack_require__(14);
 	var CONSTS = __webpack_require__(10);
 	
-	var _keys = __webpack_require__(15);
+	var _uniq = __webpack_require__(15);
+	var _keys = __webpack_require__(16);
 	var _extend = __webpack_require__(4);
-	var _includes = __webpack_require__(16);
-	var _forEach = __webpack_require__(17);
+	var _includes = __webpack_require__(17);
+	var _forEach = __webpack_require__(18);
 	var _map = __webpack_require__(5);
-	var _isEmpty = __webpack_require__(18);
-	var _some = __webpack_require__(19);
-	var _reduce = __webpack_require__(20);
-	var _filter = __webpack_require__(21);
-	var _mapValues = __webpack_require__(22);
+	var _isEmpty = __webpack_require__(19);
+	var _some = __webpack_require__(20);
+	var _reduce = __webpack_require__(21);
+	var _filter = __webpack_require__(22);
+	var _mapValues = __webpack_require__(23);
 	var _isString = __webpack_require__(8);
-	var _cloneDeep = __webpack_require__(23);
+	var _cloneDeep = __webpack_require__(24);
 	
 	var pickObjectsIds = function pickObjectsIds(memo, items, type) {
 	  if (type === 'todo_order') {
 	    memo[type] = [];
 	  } else {
-	    memo[type] = (memo[type] || []).concat(_keys(items));
+	    memo[type] = _uniq((memo[type] || []).concat(_keys(items)));
 	  }
 	  return memo;
 	};
@@ -228,6 +229,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var tryToStartSecondSync = function tryToStartSecondSync(catchingError) {
 	        return function (passInObj) {
 	          if (_isEmpty(_this2._nextSync)) {
+	            _this2._currentSync = [];
 	            if (catchingError) {
 	              return Promise.reject(passInObj);
 	            } else {
@@ -1716,6 +1718,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_23__;
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_24__;
 
 /***/ }
 /******/ ])
