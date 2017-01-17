@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/uniq"), require("lodash/keys"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
+		module.exports = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/uniq"), require("lodash/keys"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
 	else if(typeof define === 'function' && define.amd)
-		define(["lodash/extend", "lodash/map", "lodash/toPairs", "lodash/fromPairs", "lodash/isString", "lodash/uniq", "lodash/keys", "lodash/includes", "lodash/forEach", "lodash/isEmpty", "lodash/some", "lodash/reduce", "lodash/filter", "lodash/mapValues", "lodash/cloneDeep"], factory);
+		define(["lodash/extend", "lodash/map", "lodash/toPairs", "lodash/fromPairs", "lodash/isString", "lodash/uniq", "lodash/keys", "lodash/values", "lodash/includes", "lodash/forEach", "lodash/isEmpty", "lodash/some", "lodash/reduce", "lodash/filter", "lodash/mapValues", "lodash/cloneDeep"], factory);
 	else if(typeof exports === 'object')
-		exports["Thinker"] = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/uniq"), require("lodash/keys"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
+		exports["Thinker"] = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/uniq"), require("lodash/keys"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
 	else
-		root["Thinker"] = factory(root["_"]["extend"], root["_"]["map"], root["_"]["toPairs"], root["_"]["fromPairs"], root["_"]["isString"], root["_"]["uniq"], root["_"]["keys"], root["_"]["includes"], root["_"]["forEach"], root["_"]["isEmpty"], root["_"]["some"], root["_"]["reduce"], root["_"]["filter"], root["_"]["mapValues"], root["_"]["cloneDeep"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_24__) {
+		root["Thinker"] = factory(root["_"]["extend"], root["_"]["map"], root["_"]["toPairs"], root["_"]["fromPairs"], root["_"]["isString"], root["_"]["uniq"], root["_"]["keys"], root["_"]["values"], root["_"]["includes"], root["_"]["forEach"], root["_"]["isEmpty"], root["_"]["some"], root["_"]["reduce"], root["_"]["filter"], root["_"]["mapValues"], root["_"]["cloneDeep"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_24__, __WEBPACK_EXTERNAL_MODULE_25__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,17 +82,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _uniq = __webpack_require__(15);
 	var _keys = __webpack_require__(16);
+	var _values = __webpack_require__(17);
 	var _extend = __webpack_require__(4);
-	var _includes = __webpack_require__(17);
-	var _forEach = __webpack_require__(18);
+	var _includes = __webpack_require__(18);
+	var _forEach = __webpack_require__(19);
 	var _map = __webpack_require__(5);
-	var _isEmpty = __webpack_require__(19);
-	var _some = __webpack_require__(20);
-	var _reduce = __webpack_require__(21);
-	var _filter = __webpack_require__(22);
-	var _mapValues = __webpack_require__(23);
+	var _isEmpty = __webpack_require__(20);
+	var _some = __webpack_require__(21);
+	var _reduce = __webpack_require__(22);
+	var _filter = __webpack_require__(23);
+	var _mapValues = __webpack_require__(24);
 	var _isString = __webpack_require__(8);
-	var _cloneDeep = __webpack_require__(24);
+	var _cloneDeep = __webpack_require__(25);
 	
 	var pickObjectsIds = function pickObjectsIds(memo, items, type) {
 	  if (type === 'todo_order') {
@@ -166,18 +167,43 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	
 	  /**
-	   * 发起同步，可以在任何时候调用，函数自己会确保同时只有一次同步正在工作，并且自动计划下一次同步
+	   * 清理在本地存储的状态
 	   *
-	   * @param {String}  reason - 触发同步的原因，会打印在日志中
-	   * @param {ThinkerType~SyncOption}  passInOption - 同步相关设置，调用者也可以传入额外的内容以便在初始化 Thinker 时传入的所有回调函数中使用
-	   * @param {ThinkerType~NodeLikeCallback} callback
+	   * @param {?String} type - 要清理的的状态名称，目前支持的有 `lastSuccessTime`, `lastFailTime`, `backgroundInitializeCompletelySyncSucceed` ，如果不传，则清理所有状态
 	   *
-	   * @function do
+	   * @function cleanStoragedStatus
 	   * @memberof Thinker#
 	   */
 	
 	
 	  _createClass(Thinker, [{
+	    key: 'cleanStoragedStatus',
+	    value: function cleanStoragedStatus(type) {
+	      var typeKeyMap = {
+	        lastSuccessTime: CONSTS.LAST_SYNC_STORAGE_KEY,
+	        lastFailTime: CONSTS.LAST_SYNC_FAIL_STORAGE_KEY,
+	        backgroundInitializeCompletelySyncSucceed: CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY
+	      };
+	
+	      if (type == null) {
+	        _values(typeKeyMap).forEach(this.initOption.storage.removeItem.bind(this.initOption.storage));
+	      } else if (typeKeyMap[type] != null) {
+	        this.initOption.storage.removeItem(typeKeyMap[type]);
+	      }
+	    }
+	
+	    /**
+	     * 发起同步，可以在任何时候调用，函数自己会确保同时只有一次同步正在工作，并且自动计划下一次同步
+	     *
+	     * @param {String}  reason - 触发同步的原因，会打印在日志中
+	     * @param {ThinkerType~SyncOption}  passInOption - 同步相关设置，调用者也可以传入额外的内容以便在初始化 Thinker 时传入的所有回调函数中使用
+	     * @param {ThinkerType~NodeLikeCallback} callback
+	     *
+	     * @function do
+	     * @memberof Thinker#
+	     */
+	
+	  }, {
 	    key: 'do',
 	    value: function _do(reason, passInOption, cb) {
 	      if (!reason) {
@@ -1724,6 +1750,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_24__;
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_25__;
 
 /***/ }
 /******/ ])

@@ -7,7 +7,7 @@
     "test": "jest",
     "opendoc": "gulp doc && open docs/classes.list.html",
     "start": "gulp",
-    "build": "yarn add webpack --dev && yarn webpack"
+    "build": "webpack"
   },
   "keywords": [
     "synchronization",
