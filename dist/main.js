@@ -446,8 +446,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }).then(function (arg) {
 	        if (!syncInfo.backgroundInitializeCompletelySyncSucceed && _this5.initOption.autoBackgroundCompletelySync) {
 	          var _option = { syncAllData: true };
-	          var _syncInfo = { passInOptions: [_option], isFirstTime: false };
-	          _this5._doSync(_syncInfo, _option).then(function () {
+	          var completelySyncInfo = {
+	            passInOptions: syncInfo.passInOptions.concat(_option),
+	            isFirstTime: false,
+	            background: true
+	          };
+	          _this5._doSync(syncInfo, _option).then(function () {
 	            _this5.initOption.storage.setItem(CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY, 'true');
 	            _this5.trigger('backgroundInitializeCompletelySyncSucceed');
 	          });
