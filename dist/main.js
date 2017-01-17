@@ -150,12 +150,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _this._statusBackToWaitingTimer = null;
 	    _this._doSyncRetryInfo = null;
 	
-	    _this.once('backgroundInitializeCompletelySyncSucceed', function () {
-	      _this.backgroundInitializeCompletelySyncSucceed = true;
-	    });
-	
 	    // 如果后台完整同步在之前就已经完成了，那么告知调用者也是越早越好
-	    if (_this.initOption.storage.getItem(CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY) === 'true') {
+	    if (_this.backgroundInitializeCompletelySyncSucceed) {
 	      /**
 	       * 在后台初次完整同步后触发
 	       *
@@ -448,7 +444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return Promise.reject(err);
 	      }).then(function (arg) {
-	        if (syncInfo.isFirstTime && _this5.initOption.autoBackgroundCompletelySync) {
+	        if (!syncInfo.backgroundInitializeCompletelySyncSucceed && _this5.initOption.autoBackgroundCompletelySync) {
 	          var _option = { syncAllData: true };
 	          var _syncInfo = { passInOptions: [_option], isFirstTime: false };
 	          _this5._doSync(_syncInfo, _option).then(function () {
@@ -1284,8 +1280,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @alias status
 	     * @memberof Thinker#
 	     */
-	    status: 'waiting',
+	    status: 'waiting'
+	  });
 	
+	  Object.defineProperties(Thinker.prototype, {
 	    /**
 	     * 是否已经完成了后台初次完整同步
 	     *
@@ -1293,10 +1291,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @alias backgroundInitializeCompletelySyncSucceed
 	     * @memberof Thinker#
 	     */
-	    backgroundInitializeCompletelySyncSucceed: false
-	  });
+	    backgroundInitializeCompletelySyncSucceed: {
+	      get: function get() {
+	        return this.initOption.storage.getItem(CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY) === 'true';
+	      }
+	    },
 	
-	  Object.defineProperties(Thinker.prototype, {
 	    /**
 	     * 最后一次同步成功的时间
 	     *
