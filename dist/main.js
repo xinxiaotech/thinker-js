@@ -444,7 +444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return Promise.reject(err);
 	      }).then(function (arg) {
-	        if (!syncInfo.backgroundInitializeCompletelySyncSucceed && _this5.initOption.autoBackgroundCompletelySync) {
+	        if (!_this5.backgroundInitializeCompletelySyncSucceed && _this5.initOption.autoBackgroundCompletelySync) {
 	          var _option = { syncAllData: true };
 	          var completelySyncInfo = {
 	            passInOptions: syncInfo.passInOptions.concat(_option),

@@ -1,6 +1,6 @@
 {
   "name": "thinker-js",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Another synchronization framework",
   "main": "dist/main.js",
   "scripts": {
