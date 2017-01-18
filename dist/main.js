@@ -393,6 +393,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (syncInfo.isFirstTime) {
 	          // 如果是第一次同步，那么需要指定只同步最近一个月的数据
 	          requestData = { fast_from: new Date(Date.now() - 1000 * 60 * 60 * 24 * 31).toJSON(), objects: {} };
+	        } else if (option.syncAllData) {
+	          requestData = { objects: data };
 	        } else {
 	          requestData = { last_sync: _this5.lastSuccessTime.toJSON(), objects: data };
 	        }
