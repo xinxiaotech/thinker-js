@@ -446,16 +446,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return Promise.reject(err);
 	      }).then(function (arg) {
-	        if (!_this5.backgroundInitializeCompletelySyncSucceed && _this5.initOption.autoBackgroundCompletelySync) {
+	        if (!_this5.backgroundInitializeCompletelySyncSucceed && !_this5._backgroundInitializeCompletelySyncing && _this5.initOption.autoBackgroundCompletelySync && !syncInfo.background) {
 	          var _option = { syncAllData: true };
 	          var completelySyncInfo = {
 	            passInOptions: syncInfo.passInOptions.concat(_option),
 	            isFirstTime: false,
 	            background: true
 	          };
-	          _this5._doSync(syncInfo, _option).then(function () {
+	          _this5._backgroundInitializeCompletelySyncing = true;
+	          _this5._doSync(completelySyncInfo, _option).then(function () {
+	            _this5._backgroundInitializeCompletelySyncing = false;
 	            _this5.initOption.storage.setItem(CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY, 'true');
 	            _this5.trigger('backgroundInitializeCompletelySyncSucceed');
+	          }, function (err) {
+	            _this5._backgroundInitializeCompletelySyncing = false;
+	            return Promise.reject(err);
 	          });
 	        }
 	        return arg;
