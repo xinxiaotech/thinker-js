@@ -207,7 +207,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	
 	      var debounceSeconds = this.initOption.debounce;
-	      if (passInOption && passInOption.debounce !== null) {
+	      if (passInOption && passInOption.debounce != null) {
 	        debounceSeconds = passInOption.debounce;
 	      }
 	
