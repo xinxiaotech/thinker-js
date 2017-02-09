@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test'
+
 const coffee = require('coffee-script')
 const babelJest = require('babel-jest')
 const fs = require('fs')
