@@ -21,7 +21,7 @@
   "jest": {
     "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
     "setupTestFrameworkScriptFile": "./jest-test-framework-setup.js",
-    "testRegex": "(/__tests__/[^(\\/_)]*|\\.(test|spec))\\.(js|coffee)$",
+    "testRegex": "(/__tests__/[^_].*|\\.(test|spec))\\.(js|coffee)$",
     "testPathDirs": [
       "<rootDir>/lib"
     ],
