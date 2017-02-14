@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/uniq"), require("lodash/keys"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
+		module.exports = factory(require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/keys"), require("lodash/uniq"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/mapValues"), require("lodash/cloneDeep"));
 	else if(typeof define === 'function' && define.amd)
-		define(["lodash/extend", "lodash/map", "lodash/toPairs", "lodash/fromPairs", "lodash/isString", "lodash/uniq", "lodash/keys", "lodash/values", "lodash/includes", "lodash/forEach", "lodash/isEmpty", "lodash/some", "lodash/reduce", "lodash/filter", "lodash/mapValues", "lodash/cloneDeep"], factory);
+		define(["lodash/map", "lodash/toPairs", "lodash/fromPairs", "lodash/isString", "lodash/keys", "lodash/uniq", "lodash/values", "lodash/includes", "lodash/forEach", "lodash/isEmpty", "lodash/some", "lodash/reduce", "lodash/mapValues", "lodash/cloneDeep"], factory);
 	else if(typeof exports === 'object')
-		exports["Thinker"] = factory(require("lodash/extend"), require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/uniq"), require("lodash/keys"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/filter"), require("lodash/mapValues"), require("lodash/cloneDeep"));
+		exports["Thinker"] = factory(require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/keys"), require("lodash/uniq"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/mapValues"), require("lodash/cloneDeep"));
 	else
-		root["Thinker"] = factory(root["_"]["extend"], root["_"]["map"], root["_"]["toPairs"], root["_"]["fromPairs"], root["_"]["isString"], root["_"]["uniq"], root["_"]["keys"], root["_"]["values"], root["_"]["includes"], root["_"]["forEach"], root["_"]["isEmpty"], root["_"]["some"], root["_"]["reduce"], root["_"]["filter"], root["_"]["mapValues"], root["_"]["cloneDeep"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_24__, __WEBPACK_EXTERNAL_MODULE_25__) {
+		root["Thinker"] = factory(root["_"]["map"], root["_"]["toPairs"], root["_"]["fromPairs"], root["_"]["isString"], root["_"]["keys"], root["_"]["uniq"], root["_"]["values"], root["_"]["includes"], root["_"]["forEach"], root["_"]["isEmpty"], root["_"]["some"], root["_"]["reduce"], root["_"]["mapValues"], root["_"]["cloneDeep"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_24__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -63,6 +63,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -75,25 +79,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var EventEmitter = __webpack_require__(2);
 	var utils = __webpack_require__(3);
-	var definePrototype = __webpack_require__(9);
-	var defaultOption = __webpack_require__(11);
-	var errors = __webpack_require__(14);
-	var CONSTS = __webpack_require__(10);
+	var definePrototype = __webpack_require__(8);
+	var defaultOption = __webpack_require__(10);
+	var errors = __webpack_require__(15);
+	var CONSTS = __webpack_require__(9);
 	
-	var _uniq = __webpack_require__(15);
-	var _keys = __webpack_require__(16);
+	var _uniq = __webpack_require__(16);
+	var _keys = __webpack_require__(14);
 	var _values = __webpack_require__(17);
-	var _extend = __webpack_require__(4);
 	var _includes = __webpack_require__(18);
 	var _forEach = __webpack_require__(19);
-	var _map = __webpack_require__(5);
+	var _map = __webpack_require__(4);
 	var _isEmpty = __webpack_require__(20);
 	var _some = __webpack_require__(21);
 	var _reduce = __webpack_require__(22);
-	var _filter = __webpack_require__(23);
-	var _mapValues = __webpack_require__(24);
-	var _isString = __webpack_require__(8);
-	var _cloneDeep = __webpack_require__(25);
+	var _mapValues = __webpack_require__(23);
+	var _isString = __webpack_require__(7);
+	var _cloneDeep = __webpack_require__(24);
 	
 	var pickObjectsIds = function pickObjectsIds(memo, items, type) {
 	  if (type === 'todo_order') {
@@ -137,17 +139,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    var _this = _possibleConstructorReturn(this, (Thinker.__proto__ || Object.getPrototypeOf(Thinker)).call(this));
 	
-	    _this.initOption = _extend({}, Thinker.defaultOption, passInOption);
+	    _this.initOption = _extends({}, Thinker.defaultOption, passInOption);
 	    _this.initOption.apiPrefix = _this.initOption.apiPrefix.replace(/\/$/, '');
-	    'canStartSyncNow sendRequest getDataToSync getAllDataToSync getItems updateLocalData deserializeItem'.split(' ').forEach(function (methodName) {
-	      _this.initOption['_' + methodName + 'Async'] = utils.denodify(_this.initOption, methodName);
-	    });
 	
 	    _this._nextSync = [];
 	    _this._currentSync = [];
 	    _this._syncCallbacks = [];
 	    _this._doDebounceTimer = null;
-	    _this._statusBackToWaitingTimer = null;
+	    _this._autoSwitchStatusTimer = null;
 	    _this._doSyncRetryInfo = null;
 	
 	    // 如果后台完整同步在之前就已经完成了，那么告知调用者也是越早越好
@@ -202,6 +201,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'do',
 	    value: function _do(reason, passInOption, cb) {
+	      var _this2 = this;
+	
 	      if (!reason) {
 	        throw new Error('[Thinker] reason is required');
 	      }
@@ -211,22 +212,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	        debounceSeconds = passInOption.debounce;
 	      }
 	
-	      if (_includes(['waiting', 'succeed', 'failed'], this.status)) {
-	        /**
-	         * `Thinker#status` 变为 `preparing` 时触发
-	         *
-	         * @event Thinker#preparing
-	         */
-	        this._changeStatus('preparing');
-	        clearTimeout(this._statusBackToWaitingTimer);
+	      var callIntoSync = function callIntoSync() {
+	        clearTimeout(_this2._doDebounceTimer);
+	        _this2._doDebounceTimer = null;
+	        _this2._intoSync();
+	      };
+	
+	      var nextToPreparingStatus = [undefined, 'waiting', 'succeed', 'failed'];
+	      var updateDebounceTimerStatus = ['preparing', 'blocking'];
+	      if (_includes(nextToPreparingStatus.concat(updateDebounceTimerStatus), this.status)) {
+	        if (_includes(nextToPreparingStatus, this.status)) {
+	          this._changeStatus('preparing');
+	          clearTimeout(this._autoSwitchStatusTimer);
+	          this._autoSwitchStatusTimer = null;
+	        } else {
+	          clearTimeout(this._doDebounceTimer);
+	        }
 	        this._syncCallbacks.push(cb);
 	        this._currentSync.push({ reason: reason, passInOption: passInOption });
-	        this._doDebounceTimer = setTimeout(this._fireSync.bind(this), debounceSeconds);
-	      } else if (_includes(['preparing', 'blocking'], this.status)) {
-	        clearTimeout(this._doDebounceTimer);
-	        this._syncCallbacks.push(cb);
-	        this._currentSync.push({ reason: reason, passInOption: passInOption });
-	        this._doDebounceTimer = setTimeout(this._fireSync.bind(this), debounceSeconds);
+	        this._doDebounceTimer = setTimeout(callIntoSync, debounceSeconds);
 	      } else {
 	        this._syncCallbacks.push(cb);
 	        this._nextSync.push({ reason: reason, passInOption: passInOption });
@@ -237,81 +241,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }, {
-	    key: '_callSync',
-	    value: function _callSync() {
-	      var _this2 = this;
-	
-	      var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-	
-	      var reasons = _map(this._currentSync, 'reason');
-	      var passInOptions = _map(this._currentSync, 'passInOption');
-	      var syncInfo = { passInOptions: passInOptions, isFirstTime: this.lastSuccessTime == null };
-	      var option = _extend({ syncAllData: false }, { syncAllData: _some(passInOptions, 'syncAllData') });
-	
-	      var tryToStartSecondSync = function tryToStartSecondSync(catchingError) {
-	        return function (passInObj) {
-	          if (_isEmpty(_this2._nextSync)) {
-	            _this2._currentSync = [];
-	            if (catchingError) {
-	              return Promise.reject(passInObj);
-	            } else {
-	              return passInObj;
-	            }
-	          }
-	
-	          _this2._currentSync = _this2._nextSync;
-	          _this2._nextSync = [];
-	          return _this2._callSync(time + 1);
-	        };
-	      };
-	
-	      this.status = 'blocking';
-	      /**
-	       * `Thinker#status` 变为 `blocking` 时触发
-	       *
-	       * @event Thinker#blocking
-	       */
-	      this._changeStatus('blocking');
-	      return this._waitUntilCanSync(syncInfo).then(function () {
-	        _this2.status = 'processing';
-	        /**
-	         * `Thinker#status` 变为 `processing` 时触发
-	         *
-	         * @event Thinker#processing
-	         */
-	        _this2._changeStatus('processing');
-	        _this2.initOption.logger.log('[Thinker] start(' + time + '), reasons: \n  - ' + reasons.join('\n  - '));
-	        return _this2._doSync(syncInfo, option);
-	      }).then(tryToStartSecondSync(false), tryToStartSecondSync(true));
-	    }
-	  }, {
-	    key: '_fireSync',
-	    value: function _fireSync() {
+	    key: '_intoSync',
+	    value: function _intoSync() {
 	      var _this3 = this;
 	
 	      var autoSwitchStatus = function autoSwitchStatus() {
-	        _this3._statusBackToWaitingTimer = setTimeout(function () {
-	          _this3.status = 'waiting';
-	          /**
-	           * `Thinker#status` 变为 `waiting` 时触发
-	           *
-	           * @event Thinker#waiting
-	           */
+	        _this3._autoSwitchStatusTimer = setTimeout(function () {
+	          _this3._autoSwitchStatusTimer = null;
 	          _this3._changeStatus('waiting');
 	        }, 1000 * 2);
 	      };
 	
-	      clearTimeout(this._doDebounceTimer);
-	      this._doDebounceTimer = null;
-	      this._callSync(1).then(function () {
+	      this._callSync().then(function () {
 	        var syncCallbacks = _this3._syncCallbacks;
 	        _this3._syncCallbacks = [];
-	        _this3.status = 'succeed';
-	        /**
-	         * `Thinker#status` 变为 `succeed` 时触发
-	         *
-	         * @event Thinker#succeed
-	         */
 	        _this3._changeStatus('succeed');
 	        _this3.initOption.logger.log('[Thinker] succeed');
 	        syncCallbacks.forEach(function (cb) {
@@ -320,12 +263,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }, function (err) {
 	        var syncCallbacks = _this3._syncCallbacks;
 	        _this3._syncCallbacks = [];
-	        _this3.status = 'failed';
-	        /**
-	         * `Thinker#status` 变为 `failed` 时触发
-	         *
-	         * @event Thinker#failed
-	         */
 	        _this3._changeStatus('failed', [err]);
 	        _this3.initOption.logger.log('[Thinker] failed');
 	        syncCallbacks.forEach(function (cb) {
@@ -334,10 +271,111 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }).then(autoSwitchStatus, autoSwitchStatus);
 	    }
 	  }, {
+	    key: '_callSync',
+	    value: function _callSync() {
+	      var _this4 = this;
+	
+	      var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+	
+	      var reasons = _map(this._currentSync, 'reason');
+	      var passInOptions = _map(this._currentSync, 'passInOption');
+	      var syncInfo = { passInOptions: passInOptions, isFirstTime: this.lastSuccessTime == null };
+	      var option = this._mergePassInOptions(passInOptions);
+	
+	      var tryToStartSecondSync = function tryToStartSecondSync(catchingError) {
+	        return function (passInObj) {
+	          return _this4._tryToStartSecondSync(catchingError, time, passInObj);
+	        };
+	      };
+	
+	      this._changeStatus('blocking');
+	      return this._waitUntilCanSync(syncInfo, this.initOption).then(function () {
+	        _this4._changeStatus('processing');
+	        _this4.initOption.logger.log('[Thinker] start(' + time + '), reasons: \n  - ' + reasons.join('\n  - '));
+	        return _this4._doSync(syncInfo, option);
+	      }).then(tryToStartSecondSync(false), tryToStartSecondSync(true));
+	    }
+	  }, {
+	    key: '_tryToStartSecondSync',
+	    value: function _tryToStartSecondSync(catchingError, syncCalledTime, passInObj) {
+	      if (_isEmpty(this._nextSync)) {
+	        this._currentSync = [];
+	        if (catchingError) {
+	          return Promise.reject(passInObj);
+	        } else {
+	          return passInObj;
+	        }
+	      }
+	
+	      this._currentSync = this._nextSync;
+	      this._nextSync = [];
+	      return this._callSync(syncCalledTime + 1);
+	    }
+	  }, {
+	    key: '_waitUntilCanSync',
+	    value: function _waitUntilCanSync(syncInfo, initOption) {
+	      var tryStartSync = function tryStartSync() {
+	        initOption.call('canStartSyncNow', syncInfo).then(function (canStartSyncNow) {
+	          if (canStartSyncNow === true) {
+	            defer.resolve();
+	          } else {
+	            var reason = _isString(canStartSyncNow) ? canStartSyncNow : 'some reason';
+	            initOption.logger.log('[Thinker] sync blocked by ' + reason + ', will try again after ' + initOption.blockRetryInterval / 1000 + ' seconds');
+	            setTimeout(tryStartSync, initOption.blockRetryInterval);
+	          }
+	        }).catch(defer.reject);
+	      };
+	
+	      var defer = utils.pending();
+	      tryStartSync(syncInfo, initOption);
+	      return defer.promise;
+	    }
+	  }, {
+	    key: '_mergePassInOptions',
+	    value: function _mergePassInOptions(passInOptions) {
+	      var anySyncAllData = _some(passInOptions, 'syncAllData');
+	
+	      return {
+	        syncAllData: anySyncAllData || false
+	      };
+	    }
+	
+	    /**
+	     * `Thinker#status` 变为 `waiting` 时触发
+	     *
+	     * @event Thinker#waiting
+	     */
+	    /**
+	     * `Thinker#status` 变为 `preparing` 时触发
+	     *
+	     * @event Thinker#preparing
+	     */
+	    /**
+	     * `Thinker#status` 变为 `blocking` 时触发
+	     *
+	     * @event Thinker#blocking
+	     */
+	    /**
+	     * `Thinker#status` 变为 `processing` 时触发
+	     *
+	     * @event Thinker#processing
+	     */
+	    /**
+	     * `Thinker#status` 变为 `succeed` 时触发
+	     *
+	     * @event Thinker#succeed
+	     */
+	    /**
+	     * `Thinker#status` 变为 `failed` 时触发
+	     *
+	     * @event Thinker#failed
+	     */
+	
+	  }, {
 	    key: '_changeStatus',
-	    value: function _changeStatus(newStatus) {
+	    value: function _changeStatus(newStatus, extraArgs) {
 	      this.status = newStatus;
-	      this.trigger(newStatus);
+	      this.trigger(newStatus, extraArgs);
 	      /**
 	       * @event Thinker#statusChange
 	       * @param {string} newStatus
@@ -358,117 +396,137 @@ return /******/ (function(modules) { // webpackBootstrap
 	       * // thinker change status succeed
 	       * ```
 	       */
-	      this.trigger('statusChange', [newStatus]);
-	    }
-	  }, {
-	    key: '_waitUntilCanSync',
-	    value: function _waitUntilCanSync(syncInfo) {
-	      var _this4 = this;
-	
-	      var tryStartSync = function tryStartSync() {
-	        _this4.initOption._canStartSyncNowAsync(syncInfo).then(function (canStartSyncNow) {
-	          if (canStartSyncNow === true) {
-	            defer.resolve();
-	          } else {
-	            var reason = _isString(canStartSyncNow) ? canStartSyncNow : 'some reason';
-	            _this4.initOption.logger.log('[Thinker] sync blocked by ' + reason + ', will try again after ' + _this4.initOption.blockRetryInterval / 1000 + ' seconds');
-	            setTimeout(tryStartSync, _this4.initOption.blockRetryInterval);
-	          }
-	        });
-	      };
-	
-	      var defer = utils.pending();
-	      tryStartSync();
-	      return defer.promise;
+	      this.trigger('statusChange', [newStatus].concat(extraArgs));
 	    }
 	  }, {
 	    key: '_doSync',
 	    value: function _doSync(syncInfo, option) {
 	      var _this5 = this;
 	
-	      var getDataMethodName = option.syncAllData ? '_getAllDataToSyncAsync' : '_getDataToSyncAsync';
-	      return this.initOption[getDataMethodName](syncInfo).then(function (data) {
-	        var requestUrl = _this5.initOption.apiPrefix + '/account/sync';
-	        var requestData = void 0;
-	        if (syncInfo.isFirstTime) {
+	      var getDataMethodName = option.syncAllData ? 'getAllDataToSync' : 'getDataToSync';
+	      return this.initOption.call(getDataMethodName, syncInfo).then(function (data) {
+	        return _this5._sendSyncRequest(syncInfo, option, data);
+	      }).then(function (resp) {
+	        return _this5._updateLocalData(syncInfo, resp);
+	      }).then(function (resp) {
+	        var newLastSyncTime = utils.parseValidDate(resp.data.last_sync) || new Date();
+	        _this5.initOption.storage.setItem(CONSTS.LAST_SYNC_STORAGE_KEY, newLastSyncTime.getTime());
+	        _this5.initOption.storage.removeItem(CONSTS.LAST_SYNC_FAIL_STORAGE_KEY);
+	        return resp;
+	      }, function (err) {
+	        _this5.initOption.storage.setItem(CONSTS.LAST_SYNC_FAIL_STORAGE_KEY, new Date().getTime());
+	        return Promise.reject(err);
+	      }).then(function (resp) {
+	        _this5._tryToTriggerBackgroundInitializeCompletelySync(syncInfo, option);
+	        return;
+	      });
+	    }
+	  }, {
+	    key: '_tryToTriggerBackgroundInitializeCompletelySync',
+	    value: function _tryToTriggerBackgroundInitializeCompletelySync(syncInfo, passInOption) {
+	      var _this6 = this;
+	
+	      if (!this.backgroundInitializeCompletelySyncSucceed && !syncInfo.background && this.initOption.autoBackgroundCompletelySync) {
+	        var option = { syncAllData: true };
+	        var completelySyncInfo = {
+	          passInOptions: syncInfo.passInOptions.concat(option),
+	          isFirstTime: false,
+	          background: true
+	        };
+	        this._doSync(completelySyncInfo, option).then(function () {
+	          _this6.initOption.storage.setItem(CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY, 'true');
+	          _this6.trigger('backgroundInitializeCompletelySyncSucceed');
+	        }, function (err) {
+	          // 吞掉，等下次同步时直接再做一次就好了
+	        });
+	      }
+	    }
+	  }, {
+	    key: '_sendSyncRequest',
+	    value: function _sendSyncRequest(syncInfo, option, data) {
+	      var _this7 = this;
+	
+	      var requestUrl = this.initOption.apiPrefix + '/account/sync';
+	      var requestData = void 0,
+	          requestPromise = void 0;
+	      if (option.syncAllData) {
+	        requestData = { objects: data };
+	      } else {
+	        if (!this.lastSuccessTime) {
 	          // 如果是第一次同步，那么需要指定只同步最近一个月的数据
 	          requestData = { fast_from: new Date(Date.now() - 1000 * 60 * 60 * 24 * 31).toJSON(), objects: {} };
-	        } else if (option.syncAllData) {
-	          requestData = { objects: data };
 	        } else {
-	          requestData = { last_sync: _this5.lastSuccessTime.toJSON(), objects: data };
+	          requestData = { last_sync: this.lastSuccessTime.toJSON(), objects: data };
 	        }
-	        var requestConfig = { url: requestUrl, method: 'POST', data: requestData, params: null };
+	      }
+	      var requestConfig = { url: requestUrl, method: 'POST', data: requestData, params: null };
+	      var tryRequest = function tryRequest(retryTime) {
+	        _this7.initOption.logger.log('[Thinker] request retry(' + retryTime + ')', requestConfig);
+	        return _this7.initOption.call('sendRequest', syncInfo, _cloneDeep(requestConfig)).then(function (resp) {
+	          resp.config = requestConfig;
+	          return resp;
+	        }, function (err) {
+	          _this7.initOption.logger.error('[Thinker] request failed(' + retryTime + ')', err);
+	          return Promise.reject(err);
+	        });
+	      };
 	
-	        if (_this5.initOption.autoRetryRequestCount) {
-	          _this5._doSyncRetryInfo = utils.delayRetry(function (retryTime) {
-	            _this5.initOption.logger.log('[Thinker] request retry(' + retryTime + ')', requestConfig);
-	            return _this5.initOption._sendRequestAsync(syncInfo, _cloneDeep(requestConfig)).then(function (resp) {
-	              resp.config = requestConfig;
-	              return resp;
-	            }, function (err) {
-	              _this5.initOption.logger.error('[Thinker] request failed(' + retryTime + ')', err);
-	              return Promise.reject(err);
-	            });
-	          }, { maxRetryCount: _this5.initOption.autoRetryRequestCount });
-	          return _this5._doSyncRetryInfo.promise;
-	        } else {
-	          return _this5.initOption._sendRequestAsync(syncInfo, _cloneDeep(requestConfig)).then(function (resp) {
-	            resp.config = requestConfig;
-	            return resp;
-	          });
+	      if (this.initOption.autoRetryRequestCount) {
+	        this._doSyncRetryInfo = utils.delayRetry(tryRequest, { maxRetryCount: this.initOption.autoRetryRequestCount });
+	        requestPromise = this._doSyncRetryInfo.promise;
+	      } else {
+	        requestPromise = tryRequest(1);
+	      }
+	
+	      return requestPromise.then(function (resp) {
+	        // 服务端写入数据出错/冲突就会返回 507 ，但这种错误客户端是可以自己消化掉的
+	        // 所以不抛出错误，继续下一步
+	        if ((resp.status >= 300 || resp.status < 200) && resp.status !== 507) {
+	          throw new errors.SyncFailedError(resp);
 	        }
-	      }).then(function (resp) {
 	        // 有时后端会响应一个空白，这时就代表数据出错或者后端出错了
 	        if (!resp.data) {
 	          throw new errors.ResponseEntityEmptyError(resp);
 	        }
-	        return _this5._updateLocalData(syncInfo, resp).then(function () {
-	          return resp;
-	        });
-	      }, function (resp) {
-	        // 服务端写入数据出错/冲突就会返回 507 ，但这种错误客户端是可以自己消化掉的
-	        // 所以不抛出错误，继续下一步
-	        if (resp.status !== 507) {
-	          throw new errors.SyncFailedError(resp);
-	        }
-	        return _this5._updateLocalData(syncInfo, resp).then(function () {
-	          return resp;
-	        });
-	      }).then(function (resp) {
-	        var newLastSyncTime = utils.parseValidDate(resp.data.last_sync) == null || new Date();
-	        _this5.initOption.storage.setItem(CONSTS.LAST_SYNC_STORAGE_KEY, newLastSyncTime.getTime());
-	        _this5.initOption.storage.removeItem(CONSTS.LAST_SYNC_FAIL_STORAGE_KEY);
 	        return resp;
-	      }).catch(function (err) {
-	        if (_this5.initOption.storage.getItem(CONSTS.LAST_SYNC_FAIL_STORAGE_KEY)) {
-	          _this5.initOption.storage.setItem(CONSTS.LAST_SYNC_FAIL_STORAGE_KEY, new Date().getTime());
-	        }
-	        return Promise.reject(err);
-	      }).then(function (arg) {
-	        if (!_this5.backgroundInitializeCompletelySyncSucceed && !_this5._backgroundInitializeCompletelySyncing && _this5.initOption.autoBackgroundCompletelySync && !syncInfo.background) {
-	          var _option = { syncAllData: true };
-	          var completelySyncInfo = {
-	            passInOptions: syncInfo.passInOptions.concat(_option),
-	            isFirstTime: false,
-	            background: true
-	          };
-	          _this5._backgroundInitializeCompletelySyncing = true;
-	          _this5._doSync(completelySyncInfo, _option).then(function () {
-	            _this5._backgroundInitializeCompletelySyncing = false;
-	            _this5.initOption.storage.setItem(CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY, 'true');
-	            _this5.trigger('backgroundInitializeCompletelySyncSucceed');
-	          }, function (err) {
-	            _this5._backgroundInitializeCompletelySyncing = false;
-	            return Promise.reject(err);
-	          });
-	        }
-	        return arg;
+	      });
+	    }
+	  }, {
+	    key: '_updateLocalData',
+	    value: function _updateLocalData(syncInfo, resp) {
+	      var _this8 = this;
+	
+	      var requestData = resp.config.data.objects;
+	      var serverData = resp.data.objects;
+	
+	      var itemIds = {};
+	      _reduce(requestData, pickObjectsIds, itemIds);
+	      _reduce(serverData, pickObjectsIds, itemIds);
+	      return this.initOption.call('getItems', syncInfo, itemIds).then(function (localData) {
+	        return utils.props(_mapValues(itemIds, function (ids, type) {
+	          var requestItems = requestData[type];
+	          var localItems = localData[type];
+	          var serverItems = serverData[type];
+	          return _this8._deserializeItem(syncInfo, type, ids, requestItems, localItems, serverItems, resp);
+	        }));
+	      }).then(function (groupedData) {
+	        _forEach(groupedData, function (groupedItems, type) {
+	          if (_isEmpty(groupedItems)) {
+	            delete groupedData[type];
+	          } else {
+	            _forEach(groupedItems, function (items, action) {
+	              if (_isEmpty(items)) delete groupedItems[action];
+	            });
+	          }
+	        });
+	        return _this8.initOption.call('updateLocalData', syncInfo, groupedData);
+	      }).then(function () {
+	        return resp;
 	      });
 	    }
 	  }, {
 	    key: '_decideAction',
-	    value: function _decideAction(serverItem, localItem, requestItem, isServerSaveFailed) {
+	    value: function _decideAction(requestItem, localItem, serverItem, isServerSaveFailed) {
 	      var requestItemUpdatedAt = requestItem && requestItem.updated_at ? new Date(requestItem.updated_at).valueOf() : undefined;
 	      var localItemUpdatedAt = localItem && localItem.updated_at ? new Date(localItem.updated_at).valueOf() : undefined;
 	      var serverItemUpdatedAt = serverItem && serverItem.updated_at ? new Date(serverItem.updated_at).valueOf() : undefined;
@@ -500,85 +558,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }, {
-	    key: '_updateLocalData',
-	    value: function _updateLocalData(syncInfo, resp) {
-	      var _this6 = this;
+	    key: '_deserializeItem',
+	    value: function _deserializeItem(syncInfo, type, itemIds, requestItems, localItems, serverItems, resp) {
+	      var _this9 = this;
 	
-	      var requestData = resp.config.data.objects;
-	      var serverData = resp.data.objects;
+	      // 如果 failure 里出现 ObjectType 的话，那就不用检查 resp.data.objects 了
+	      if (type !== 'todo_order' && _includes(resp.data.failures, type)) {
+	        var requestItemsMappedLocalItems = void 0;
+	        if (requestItems != null) {
+	          requestItemsMappedLocalItems = _reduce(requestItems, function (memo, requestItem, id) {
+	            memo[id] = localItems[id] || requestItem;
+	            return memo;
+	          }, {});
+	        }
+	        return Promise.resolve({ keepDirty: requestItemsMappedLocalItems || {} });
+	      }
 	
-	      var itemIds = {};
-	      _reduce(requestData, pickObjectsIds, itemIds);
-	      _reduce(serverData, pickObjectsIds, itemIds);
-	      return this.initOption._getItemsAsync(syncInfo, itemIds).then(function (localData) {
-	        var groupedPromises = _mapValues(localData, function (localItems, type) {
-	          var serverItems = serverData[type];
-	          var requestItems = requestData[type];
-	          if (type === 'todo_order') {
-	            var serverSaveFailed = _includes(resp.data.failures, "todo_order");
-	            var action = _this6._decideAction(serverItems, localItems, requestItems, serverSaveFailed);
-	            var actionData = void 0;
-	            switch (action) {
-	              case 'doNothing':
-	                actionData = localItems;
-	                break;
-	              case 'cleanDirty':
-	                actionData = requestItems;
-	                break;
-	              case 'change':
-	              case 'new':
-	                actionData = serverItems;
-	                break;
-	            }
-	            return _defineProperty({}, action, actionData);
-	            // 如果 failure 里出现 ObjectType 的话，那就不用检查 resp.data.objects 了
-	          } else if (_includes(resp.data.failures, type)) {
-	            var requestItemsMappedLocalItems = void 0;
-	            // 所有 requestItem 对应的 localItem 都 keepDirty 就好了
-	            if (requestItems != null) {
-	              requestItemsMappedLocalItems = _reduce(localItems, function (memo, localItem, id) {
-	                if (requestItems[id] != null) {
-	                  memo[id] = localItem;
-	                }
-	                return memo;
-	              }, {});
-	            } else {
-	              requestItemsMappedLocalItems = {};
-	            }
-	            return { keepDirty: requestItemsMappedLocalItems };
-	          } else {
-	            var deserializingActionPromiseGroups = _reduce(itemIds[type], function (memo, itemId) {
-	              var serverItem = serverItems != null ? serverItems[itemId] : undefined;
-	              var requestItem = requestItems != null ? requestItems[itemId] : undefined;
-	              var localItem = localItems != null ? localItems[itemId] : undefined;
-	              var serverSaveFailed = _includes(resp.data.failures, type + ':' + itemId);
-	              var action = _this6._decideAction(serverItem, localItem, requestItem, serverSaveFailed);
-	              if (!memo[action]) {
-	                memo[action] = {};
-	              }
-	              memo[action][itemId] = _this6.initOption._deserializeItemAsync(syncInfo, type, action, requestItem, localItem, serverItem);
-	              return memo;
-	            }, {});
-	            var deserializingActionGroups = _reduce(deserializingActionPromiseGroups, function (memo, promises, action) {
-	              memo[action] = utils.props(promises);
-	              return memo;
-	            }, {});
-	            return utils.props(deserializingActionGroups);
-	          }
-	        });
-	        return utils.props(groupedPromises);
-	      }).then(function (groupedData) {
-	        _forEach(groupedData, function (groupedItems, type) {
-	          _forEach(groupedItems, function (items, action) {
-	            if (_isEmpty(items)) {
-	              delete groupedItems[action];
-	            }
-	          });
-	        });
-	        return _this6.initOption._updateLocalDataAsync(syncInfo, groupedData).then(function () {
-	          return resp;
-	        });
-	      });
+	      if (type === 'todo_order') {
+	        var _ret = function () {
+	
+	          var serverSaveFailed = _includes(resp.data.failures, "todo_order");
+	          var action = _this9._decideAction(requestItems, localItems, serverItems, serverSaveFailed);
+	          return {
+	            v: _this9.initOption.call('deserializeItem', syncInfo, type, action, requestItems, localItems, serverItems).then(function (item) {
+	              return _defineProperty({}, action, item);
+	            })
+	          };
+	        }();
+	
+	        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	      } else {
+	
+	        var promiseGroups = _reduce(itemIds, function (memo, itemId) {
+	          var requestItem = requestItems != null ? requestItems[itemId] : undefined;
+	          var localItem = localItems != null ? localItems[itemId] : undefined;
+	          var serverItem = serverItems != null ? serverItems[itemId] : undefined;
+	          var serverSaveFailed = _includes(resp.data.failures, type + ':' + itemId);
+	          var action = _this9._decideAction(requestItem, localItem, serverItem, serverSaveFailed);
+	          if (!memo[action]) memo[action] = {};
+	          memo[action][itemId] = _this9.initOption.call('deserializeItem', syncInfo, type, action, requestItem, localItem, serverItem);
+	          return memo;
+	        }, {});
+	
+	        return utils.props(_reduce(promiseGroups, function (memo, promises, action) {
+	          memo[action] = utils.props(promises);
+	          return memo;
+	        }, {}));
+	      }
 	    }
 	  }]);
 	
@@ -1093,13 +1119,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	var _extend = __webpack_require__(4);
-	var _map = __webpack_require__(5);
-	var _toPairs = __webpack_require__(6);
-	var _fromPairs = __webpack_require__(7);
-	var _isString = __webpack_require__(8);
+	var _map = __webpack_require__(4);
+	var _toPairs = __webpack_require__(5);
+	var _fromPairs = __webpack_require__(6);
+	var _isString = __webpack_require__(7);
 	
 	var utils = {
 	  isPromise: function isPromise(obj) {
@@ -1180,8 +1207,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else {
 	        (function () {
 	          fn = typeof fn === 'function' ? fn : function () {};
-	          _internalState = _internalState || { retriedTimes: 0, lastOutSecond: 0.1, canceled: false, lastTimeFailedReason: null };
-	          var option = _extend({}, defaultOption, passInOption);
+	          _internalState = _internalState || {
+	            retriedTimes: 0,
+	            lastOutSecond: 0.1,
+	            canceled: false,
+	            lastTimeFailedReason: null
+	          };
+	          var option = _extends({}, defaultOption, passInOption);
 	
 	          utils.try(fn, _internalState.retriedTimes + 1).catch(function (err) {
 	            _internalState.lastTimeFailedReason = err;
@@ -1261,38 +1293,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 8 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
-
-/***/ },
-/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var CONSTS = __webpack_require__(10);
+	var CONSTS = __webpack_require__(9);
 	var utils = __webpack_require__(3);
-	var _extend = __webpack_require__(4);
 	
 	module.exports = function (Thinker) {
-	  _extend(Thinker.prototype, {
-	    /**
-	     * 当前同步状态
-	     *
-	     * `status` 属性的值各自代表的阶段如下：
-	     *   * `waiting`: 等待触发同步
-	     *   * `preparing`: 同步已经在计划中，但还没开始，此时调用 `do()` 都会在同步正式开始时合并为一次请求
-	     *   * `blocking`: 同步已经在计划中，但因为客户端阻止所以还没开始，此时调用 `do()` 都会在同步正式开始时合并为一次请求
-	     *   * `processing`: 同步已经开始，此时调用 `do()` 会自动计划下一次同步
-	     *   * `succeed` | `failed`: 同步完成或者失败
-	     *
-	     * @type {String}
-	     * @alias status
-	     * @memberof Thinker#
-	     */
-	    status: 'waiting'
-	  });
+	  /**
+	   * 当前同步状态
+	   *
+	   * `status` 属性的值各自代表的阶段如下：
+	   *   * `waiting`: 等待触发同步
+	   *   * `preparing`: 同步已经在计划中，但还没开始，此时调用 `do()` 都会在同步正式开始时合并为一次请求
+	   *   * `blocking`: 同步已经在计划中，但因为客户端阻止所以还没开始，此时调用 `do()` 都会在同步正式开始时合并为一次请求
+	   *   * `processing`: 同步已经开始，此时调用 `do()` 会自动计划下一次同步
+	   *   * `succeed` | `failed`: 同步完成或者失败
+	   *
+	   * @type {String}
+	   * @alias status
+	   * @memberof Thinker#
+	   */
+	  Thinker.prototype.status = 'waiting';
 	
 	  Object.defineProperties(Thinker.prototype, {
 	    /**
@@ -1337,7 +1360,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1349,13 +1372,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 	
-	var Logger = __webpack_require__(12);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var MemoryLogger = __webpack_require__(11).default;
 	var MemoryStorage = __webpack_require__(13);
+	var utils = __webpack_require__(3);
+	var _keys = __webpack_require__(14);
 	var root = void 0;
 	try {
 	  root = window || global || {};
@@ -1363,37 +1390,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  root = {};
 	}
 	
-	/**
-	 * 默认的初始化设置项
-	 *
-	 * @property {String} [apiPrefix=https://api-ng.pomotodo.com] - 发起同步时要请求的服务器地址
-	 * @property {Number} [debounce=5000] - 在多久时间内多次调用 `do()` 会合并为一次同步请求，单位：毫秒
-	 * @property {Number} [blockRetryInterval=5000] - 被 `canStartSyncNow()` 阻塞同步多久后再调用 `canStartSyncNow()`，单位：毫
-	 * @property {Thinker~Logger} logger - 日志收集器
-	 * @property {Storage} storage - 读写本地存储，实现了 {@link https://developer.mozilla.org/en-US/docs/Web/API/Storage Storage 接口}的对象
-	 * @property {Boolean} [autoBackgroundCompletelySync=true] - 是否自动发起后台初次完整同步
-	 * @property {Number} [autoRetryRequestCount=5] - 发起同步请求失败后重试几次
-	 *
-	 * @property {Function} canStartSyncNow
-	 * @property {Function} sendRequest
-	 * @property {Function} getDataToSync
-	 * @property {Function} getAllDataToSync
-	 * @property {Function} getItems
-	 * @property {Function} updateLocalData
-	 *
-	 * @namespace
-	 * @name defaultOption
-	 * @memberof Thinker
-	 */
-	module.exports = {
-	  apiPrefix: 'https://api-ng.pomotodo.com',
-	  debounce: 1000 * 5,
-	  blockRetryInterval: 1000 * 5,
-	  logger: new Logger(),
-	  storage: root.localStorage || new MemoryStorage(),
-	  autoBackgroundCompletelySync: true,
-	  autoRetryRequestCount: 5,
-	
+	/* istanbul ignore next */
+	var optionCallbacks = {
 	  /**
 	   * 从客户端了解是否可以立即开始同步
 	   *
@@ -1482,30 +1480,86 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	  /**
-	   * 要求客户端根据处理过的服务器返回值更新本地数据库
+	   * 客户端可以在这个函数里对数据进行预处理，被处理过的值会被传入 {@link Thinker.defaultOption.updateLocalData}
 	   *
 	   * @param {ThinkerType~SyncInfo} syncInfo
 	   * @param {ThinkerType~ObjectType} objectType
 	   * @param {ThinkerType~ObjectAction} objectAction
-	   * @param {?Object} requestObject
-	   * @param {?Object} localObject
-	   * @param {?Object} serverObject
+	   * @param {?Object} requestItem
+	   * @param {?Object} localItem
+	   * @param {?Object} serverItem
 	   * @param {ThinkerType~NodeLikeCallback} callback - `Function(Error)`
 	   *
 	   * @alias Thinker.defaultOption.deserializeItem
 	   * @memberof Thinker
 	   */
-	  deserializeItem: function deserializeItem(syncInfo, objectType, objectAction, requestObject, localObject, serverObject, callback) {
-	    callback(null, serverObject);
+	  deserializeItem: function deserializeItem(syncInfo, objectType, objectAction, requestItem, localItem, serverItem, callback) {
+	    var finalItem = void 0;
+	    switch (objectAction) {
+	      case 'change':
+	      case 'new':
+	        finalItem = serverItem;
+	        break;
+	      default:
+	        finalItem = localItem || requestItem;
+	        break;
+	    }
+	    callback(null, finalItem);
+	  },
+	  call: function call(cbName) {
+	    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      args[_key - 1] = arguments[_key];
+	    }
+	
+	    return utils.denodify(this, cbName).apply(undefined, args);
 	  }
 	};
+	
+	/**
+	 * 默认的初始化设置项
+	 *
+	 * @property {String} [apiPrefix=https://api-ng.pomotodo.com] - 发起同步时要请求的服务器地址
+	 * @property {Number} [debounce=5000] - 在多久时间内多次调用 `do()` 会合并为一次同步请求，单位：毫秒
+	 * @property {Number} [blockRetryInterval=5000] - 被 `canStartSyncNow()` 阻塞同步多久后再调用 `canStartSyncNow()`，单位：毫
+	 * @property {Thinker~Logger} logger - 日志收集器
+	 * @property {Storage} storage - 读写本地存储，实现了 {@link https://developer.mozilla.org/en-US/docs/Web/API/Storage Storage 接口}的对象
+	 * @property {Boolean} [autoBackgroundCompletelySync=true] - 是否自动发起后台初次完整同步
+	 * @property {Number} [autoRetryRequestCount=5] - 发起同步请求失败后重试几次
+	 *
+	 * @property {Function} canStartSyncNow
+	 * @property {Function} sendRequest
+	 * @property {Function} getDataToSync
+	 * @property {Function} getAllDataToSync
+	 * @property {Function} getItems
+	 * @property {Function} updateLocalData
+	 * @property {Function} deserializeItem
+	 *
+	 * @namespace
+	 * @name defaultOption
+	 * @memberof Thinker
+	 */
+	module.exports = _extends({
+	  apiPrefix: 'https://api-ng.pomotodo.com',
+	  debounce: 1000 * 5,
+	  blockRetryInterval: 1000 * 5,
+	  logger: new MemoryLogger(),
+	  storage: root.localStorage || new MemoryStorage(),
+	  autoBackgroundCompletelySync: true,
+	  autoRetryRequestCount: 5
+	}, optionCallbacks);
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 12 */
-/***/ function(module, exports) {
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -1515,26 +1569,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @interface Thinker~Logger
 	 * @memberof Thinker
 	 */
-	var Logger = function () {
-	  function Logger() {
-	    _classCallCheck(this, Logger);
+	var MemoryLogger = function () {
+	
+	  /* istanbul ignore next */
+	  function MemoryLogger(passInOption) {
+	    _classCallCheck(this, MemoryLogger);
+	
+	    this.option = _extends({}, this.constructor.defaultOption, passInOption);
+	
+	    this.logs = [];
+	    this.errors = [];
 	  }
 	
-	  _createClass(Logger, [{
-	    key: "log",
+	  /**
+	   * 打印普通日志
+	   *
+	   * @function
+	   * @name log
+	   * @param {...*} message
+	   * @memberof Thinker~Logger#
+	   */
 	
-	    /**
-	     * 打印普通日志
-	     *
-	     * @function
-	     * @name log
-	     * @param {...*} message
-	     * @memberof Thinker~Logger#
-	     */
-	    value: function log() {
+	
+	  _createClass(MemoryLogger, [{
+	    key: 'log',
+	    value: function log() /* istanbul ignore next */{
 	      var _console;
 	
-	      return (_console = console).log.apply(_console, arguments);
+	      for (var _len = arguments.length, messages = Array(_len), _key = 0; _key < _len; _key++) {
+	        messages[_key] = arguments[_key];
+	      }
+	
+	      if (this.option.print) (_console = console).log.apply(_console, messages);
+	      this.logs.push(messages);
 	    }
 	
 	    /**
@@ -1547,18 +1614,213 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	
 	  }, {
-	    key: "error",
-	    value: function error() {
+	    key: 'error',
+	    value: function error() /* istanbul ignore next */{
 	      var _console2;
 	
-	      return (_console2 = console).log.apply(_console2, arguments);
+	      for (var _len2 = arguments.length, messages = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	        messages[_key2] = arguments[_key2];
+	      }
+	
+	      if (this.option.print) (_console2 = console).error.apply(_console2, messages);
+	      this.errors.push(messages);
 	    }
 	  }]);
 	
-	  return Logger;
+	  return MemoryLogger;
 	}();
 	
-	module.exports = Logger;
+	MemoryLogger.defaultOption = {
+	  print: process.env.NODE_ENV === 'test' ? false : true
+	};
+	exports.default = MemoryLogger;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	// shim for using process in browser
+	var process = module.exports = {};
+	
+	// cached from whatever global is present so that test runners that stub it
+	// don't break things.  But we need to wrap it in a try catch in case it is
+	// wrapped in strict mode code which doesn't define any globals.  It's inside a
+	// function because try/catches deoptimize in certain engines.
+	
+	var cachedSetTimeout;
+	var cachedClearTimeout;
+	
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
+	(function () {
+	    try {
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
+	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
+	    }
+	    try {
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
+	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
+	    }
+	} ())
+	function runTimeout(fun) {
+	    if (cachedSetTimeout === setTimeout) {
+	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
+	        return setTimeout(fun, 0);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedSetTimeout(fun, 0);
+	    } catch(e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+	            return cachedSetTimeout.call(null, fun, 0);
+	        } catch(e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+	            return cachedSetTimeout.call(this, fun, 0);
+	        }
+	    }
+	
+	
+	}
+	function runClearTimeout(marker) {
+	    if (cachedClearTimeout === clearTimeout) {
+	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
+	        return clearTimeout(marker);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedClearTimeout(marker);
+	    } catch (e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+	            return cachedClearTimeout.call(null, marker);
+	        } catch (e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+	            return cachedClearTimeout.call(this, marker);
+	        }
+	    }
+	
+	
+	
+	}
+	var queue = [];
+	var draining = false;
+	var currentQueue;
+	var queueIndex = -1;
+	
+	function cleanUpNextTick() {
+	    if (!draining || !currentQueue) {
+	        return;
+	    }
+	    draining = false;
+	    if (currentQueue.length) {
+	        queue = currentQueue.concat(queue);
+	    } else {
+	        queueIndex = -1;
+	    }
+	    if (queue.length) {
+	        drainQueue();
+	    }
+	}
+	
+	function drainQueue() {
+	    if (draining) {
+	        return;
+	    }
+	    var timeout = runTimeout(cleanUpNextTick);
+	    draining = true;
+	
+	    var len = queue.length;
+	    while(len) {
+	        currentQueue = queue;
+	        queue = [];
+	        while (++queueIndex < len) {
+	            if (currentQueue) {
+	                currentQueue[queueIndex].run();
+	            }
+	        }
+	        queueIndex = -1;
+	        len = queue.length;
+	    }
+	    currentQueue = null;
+	    draining = false;
+	    runClearTimeout(timeout);
+	}
+	
+	process.nextTick = function (fun) {
+	    var args = new Array(arguments.length - 1);
+	    if (arguments.length > 1) {
+	        for (var i = 1; i < arguments.length; i++) {
+	            args[i - 1] = arguments[i];
+	        }
+	    }
+	    queue.push(new Item(fun, args));
+	    if (queue.length === 1 && !draining) {
+	        runTimeout(drainQueue);
+	    }
+	};
+	
+	// v8 likes predictible objects
+	function Item(fun, array) {
+	    this.fun = fun;
+	    this.array = array;
+	}
+	Item.prototype.run = function () {
+	    this.fun.apply(null, this.array);
+	};
+	process.title = 'browser';
+	process.browser = true;
+	process.env = {};
+	process.argv = [];
+	process.version = ''; // empty string to avoid regexp issues
+	process.versions = {};
+	
+	function noop() {}
+	
+	process.on = noop;
+	process.addListener = noop;
+	process.once = noop;
+	process.off = noop;
+	process.removeListener = noop;
+	process.removeAllListeners = noop;
+	process.emit = noop;
+	
+	process.binding = function (name) {
+	    throw new Error('process.binding is not supported');
+	};
+	
+	process.cwd = function () { return '/' };
+	process.chdir = function (dir) {
+	    throw new Error('process.chdir is not supported');
+	};
+	process.umask = function() { return 0; };
+
 
 /***/ },
 /* 13 */
@@ -1571,7 +1833,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var MemoryStorage = function () {
-	  function MemoryStorage() {
+	  function MemoryStorage() /* istanbul ignore next */{
 	    _classCallCheck(this, MemoryStorage);
 	
 	    this.store = {};
@@ -1579,32 +1841,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  _createClass(MemoryStorage, [{
 	    key: "key",
-	    value: function key(index) {
+	    value: function key(index) /* istanbul ignore next */{
 	      return Object.keys(this.store)[index];
 	    }
 	  }, {
 	    key: "getItem",
-	    value: function getItem(key) {
+	    value: function getItem(key) /* istanbul ignore next */{
 	      return this.store[key];
 	    }
 	  }, {
 	    key: "setItem",
-	    value: function setItem(key, value) {
+	    value: function setItem(key, value) /* istanbul ignore next */{
 	      this.store[key] = value;
 	    }
 	  }, {
 	    key: "removeItem",
-	    value: function removeItem(key) {
+	    value: function removeItem(key) /* istanbul ignore next */{
 	      delete this.store[key];
 	    }
 	  }, {
 	    key: "clear",
-	    value: function clear() {
+	    value: function clear() /* istanbul ignore next */{
 	      this.store = {};
 	    }
 	  }, {
 	    key: "length",
-	    get: function get() {
+	    get: function get() /* istanbul ignore next */{
 	      return Object.keys(this.store).length;
 	    }
 	  }]);
@@ -1616,6 +1878,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 14 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
+
+/***/ },
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1647,31 +1915,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	SyncFailedError.prototype.constructor = SyncFailedError;
 	
 	/**
-	 * @class SyncBeCanceledError
-	 * @extends Error
-	 * @memberof Thinker
-	 */
-	
-	var SyncBeCanceledError =
-	/**
-	 * @var response {ThinkerType~ResponseInfo}
-	 * @memberof Thinker.errors.SyncBeCanceledError#
-	 */
-	function SyncBeCanceledError(response) {
-	  _classCallCheck(this, SyncBeCanceledError);
-	
-	  this.response = response;
-	  if (typeof Error.captureStackTrace === "function") {
-	    Error.captureStackTrace(this, this.constructor);
-	  }
-	  this.name = 'SyncBeCanceledError';
-	  this.message = 'Sync failed';
-	};
-	
-	SyncBeCanceledError.prototype = Object.create(Error.prototype);
-	SyncBeCanceledError.prototype.constructor = SyncBeCanceledError;
-	
-	/**
 	 * @class ResponseEntityEmptyError
 	 * @extends Error
 	 * @memberof Thinker
@@ -1698,15 +1941,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	module.exports = {
 	  SyncFailedError: SyncFailedError,
-	  SyncBeCanceledError: SyncBeCanceledError,
 	  ResponseEntityEmptyError: ResponseEntityEmptyError
 	};
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ },
 /* 16 */
@@ -1761,12 +1997,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_24__;
-
-/***/ },
-/* 25 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_25__;
 
 /***/ }
 /******/ ])
