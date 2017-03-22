@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/keys"), require("lodash/uniq"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/mapValues"), require("lodash/cloneDeep"));
+		module.exports = factory(require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/keys"), require("lodash/uniq"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/mapValues"), require("lodash/cloneDeep"), require("lodash/compact"));
 	else if(typeof define === 'function' && define.amd)
-		define(["lodash/map", "lodash/toPairs", "lodash/fromPairs", "lodash/isString", "lodash/keys", "lodash/uniq", "lodash/values", "lodash/includes", "lodash/forEach", "lodash/isEmpty", "lodash/some", "lodash/reduce", "lodash/mapValues", "lodash/cloneDeep"], factory);
+		define(["lodash/map", "lodash/toPairs", "lodash/fromPairs", "lodash/isString", "lodash/keys", "lodash/uniq", "lodash/values", "lodash/includes", "lodash/forEach", "lodash/isEmpty", "lodash/some", "lodash/reduce", "lodash/mapValues", "lodash/cloneDeep", "lodash/compact"], factory);
 	else if(typeof exports === 'object')
-		exports["Thinker"] = factory(require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/keys"), require("lodash/uniq"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/mapValues"), require("lodash/cloneDeep"));
+		exports["Thinker"] = factory(require("lodash/map"), require("lodash/toPairs"), require("lodash/fromPairs"), require("lodash/isString"), require("lodash/keys"), require("lodash/uniq"), require("lodash/values"), require("lodash/includes"), require("lodash/forEach"), require("lodash/isEmpty"), require("lodash/some"), require("lodash/reduce"), require("lodash/mapValues"), require("lodash/cloneDeep"), require("lodash/compact"));
 	else
-		root["Thinker"] = factory(root["_"]["map"], root["_"]["toPairs"], root["_"]["fromPairs"], root["_"]["isString"], root["_"]["keys"], root["_"]["uniq"], root["_"]["values"], root["_"]["includes"], root["_"]["forEach"], root["_"]["isEmpty"], root["_"]["some"], root["_"]["reduce"], root["_"]["mapValues"], root["_"]["cloneDeep"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_24__) {
+		root["Thinker"] = factory(root["_"]["map"], root["_"]["toPairs"], root["_"]["fromPairs"], root["_"]["isString"], root["_"]["keys"], root["_"]["uniq"], root["_"]["values"], root["_"]["includes"], root["_"]["forEach"], root["_"]["isEmpty"], root["_"]["some"], root["_"]["reduce"], root["_"]["mapValues"], root["_"]["cloneDeep"], root["_"]["compact"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_24__, __WEBPACK_EXTERNAL_MODULE_25__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -65,9 +65,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
@@ -96,6 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _mapValues = __webpack_require__(23);
 	var _isString = __webpack_require__(7);
 	var _cloneDeep = __webpack_require__(24);
+	var _compact = __webpack_require__(25);
 	
 	var pickObjectsIds = function pickObjectsIds(memo, items, type) {
 	  if (type === 'todo_order') {
@@ -104,6 +105,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    memo[type] = _uniq((memo[type] || []).concat(_keys(items)));
 	  }
 	  return memo;
+	};
+	
+	var mergeSyncOptions = function mergeSyncOptions(options) {
+	  if (!Array.isArray(options)) return options;
+	
+	  var timeoutArray = _compact(_map(options, 'timeout'));
+	  var timeout = timeoutArray.length ? Math.min.apply(Math, timeoutArray) : undefined;
+	
+	  var syncAllDataArray = _compact(_map(options, 'syncAllData'));
+	  var syncAllData = _some(syncAllDataArray);
+	
+	  return _extends({}, Object.assign.apply(Object, [{}].concat(options)), {
+	    timeout: timeout,
+	    syncAllData: syncAllData
+	  });
 	};
 	
 	/**
@@ -203,6 +219,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function _do(reason, passInOption, cb) {
 	      var _this2 = this;
 	
+	      /**
+	       * 函数的调用链：
+	       * do
+	       *     _changeStatus
+	       *     _intoSync
+	       *         _changeStatus
+	       *         _callSync
+	       *             _changeStatus
+	       *             _waitUntilCanSync
+	       *             _doSync
+	       *                 options.getDataToSync
+	       *                 _sendSyncRequest
+	       *                     options.sendRequest
+	       *                 _updateLocalData
+	       *                     options.getItems
+	       *                     _deserializeItem
+	       *                         _decideAction
+	       *                     options.updateLocalData
+	       *         cb
+	       */
+	
 	      if (!reason) {
 	        throw new Error('[Thinker] reason is required');
 	      }
@@ -280,7 +317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var reasons = _map(this._currentSync, 'reason');
 	      var passInOptions = _map(this._currentSync, 'passInOption');
 	      var syncInfo = { passInOptions: passInOptions, isFirstTime: this.lastSuccessTime == null };
-	      var option = this._mergePassInOptions(passInOptions);
+	      var option = mergeSyncOptions(passInOptions);
 	
 	      var tryToStartSecondSync = function tryToStartSecondSync(catchingError) {
 	        return function (passInObj) {
@@ -329,15 +366,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var defer = utils.pending();
 	      tryStartSync(syncInfo, initOption);
 	      return defer.promise;
-	    }
-	  }, {
-	    key: '_mergePassInOptions',
-	    value: function _mergePassInOptions(passInOptions) {
-	      var anySyncAllData = _some(passInOptions, 'syncAllData');
-	
-	      return {
-	        syncAllData: anySyncAllData || false
-	      };
 	    }
 	
 	    /**
@@ -403,23 +431,51 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function _doSync(syncInfo, option) {
 	      var _this5 = this;
 	
+	      var defer = utils.pending();
 	      var getDataMethodName = option.syncAllData ? 'getAllDataToSync' : 'getDataToSync';
-	      return this.initOption.call(getDataMethodName, syncInfo).then(function (data) {
+	
+	      var timeout = void 0,
+	          isTimeout = false;
+	      if (option.timeout != null) {
+	        timeout = option.timeout;
+	      } else if (this.initOption.timeout != null) {
+	        timeout = this.initOption.timeout;
+	      }
+	      if (timeout != null) {
+	        setTimeout(function () {
+	          isTimeout = true;
+	          defer.reject(new errors.TimeoutError());
+	        }, timeout);
+	      }
+	
+	      this.initOption.call(getDataMethodName, syncInfo).then(function (data) {
+	        if (isTimeout) return;
 	        return _this5._sendSyncRequest(syncInfo, option, data);
 	      }).then(function (resp) {
+	        if (isTimeout) return;
 	        return _this5._updateLocalData(syncInfo, resp);
 	      }).then(function (resp) {
+	        if (isTimeout) return;
 	        var newLastSyncTime = utils.parseValidDate(resp.data.last_sync) || new Date();
 	        _this5.initOption.storage.setItem(CONSTS.LAST_SYNC_STORAGE_KEY, newLastSyncTime.getTime());
 	        _this5.initOption.storage.removeItem(CONSTS.LAST_SYNC_FAIL_STORAGE_KEY);
 	        return resp;
 	      }, function (err) {
+	        if (isTimeout) return;
 	        _this5.initOption.storage.setItem(CONSTS.LAST_SYNC_FAIL_STORAGE_KEY, new Date().getTime());
 	        return Promise.reject(err);
 	      }).then(function (resp) {
+	        if (isTimeout) return;
 	        _this5._tryToTriggerBackgroundInitializeCompletelySync(syncInfo, option);
-	        return;
+	      }).then(function (resp) {
+	        if (isTimeout) return;
+	        defer.resolve(resp);
+	      }, function (err) {
+	        if (isTimeout) return;
+	        defer.reject(err);
 	      });
+	
+	      return defer.promise;
 	    }
 	  }, {
 	    key: '_tryToTriggerBackgroundInitializeCompletelySync',
@@ -612,6 +668,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(EventEmitter);
 	
 	Thinker.defaultOption = defaultOption;
+	Thinker.mergeSyncOptions = mergeSyncOptions;
 	
 	definePrototype(Thinker);
 	
@@ -1121,12 +1178,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	var _map2 = __webpack_require__(4);
 	
-	var _map = __webpack_require__(4);
-	var _toPairs = __webpack_require__(5);
-	var _fromPairs = __webpack_require__(6);
-	var _isString = __webpack_require__(7);
+	var _map3 = _interopRequireDefault(_map2);
+	
+	var _toPairs2 = __webpack_require__(5);
+	
+	var _toPairs3 = _interopRequireDefault(_toPairs2);
+	
+	var _fromPairs2 = __webpack_require__(6);
+	
+	var _fromPairs3 = _interopRequireDefault(_fromPairs2);
+	
+	var _isString2 = __webpack_require__(7);
+	
+	var _isString3 = _interopRequireDefault(_isString2);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
 	var utils = {
 	  isPromise: function isPromise(obj) {
@@ -1146,15 +1216,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 	  props: function props(promises) {
-	    var pairedPromises = _toPairs(promises);
-	    return Promise.all(_map(pairedPromises, function (pair) {
+	    var pairedPromises = (0, _toPairs3.default)(promises);
+	    return Promise.all((0, _map3.default)(pairedPromises, function (pair) {
 	      return pair[1];
 	    })).then(function (results) {
 	      var pairedResults = results.reduce(function (memo, result, index) {
 	        memo[index] = [pairedPromises[index][0], result];
 	        return memo;
 	      }, []);
-	      return _fromPairs(pairedResults);
+	      return (0, _fromPairs3.default)(pairedResults);
 	    });
 	  },
 	  pending: function pending() {
@@ -1256,7 +1326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var date = void 0;
 	    if (Object.prototype.toString.call(obj) === '[object Date]') {
 	      date = obj;
-	    } else if (_isString(obj) && /^\d+$/.test(obj)) {
+	    } else if ((0, _isString3.default)(obj) && /^\d+$/.test(obj)) {
 	      date = new Date(parseInt(obj, 10));
 	    } else {
 	      date = new Date(obj);
@@ -1519,10 +1589,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * 默认的初始化设置项
 	 *
 	 * @property {String} [apiPrefix=https://api-ng.pomotodo.com] - 发起同步时要请求的服务器地址
+	 * @property {?Number} [timeout=undefined] - 同步的超时时间，从 `Thinker#status` 变成 `processing` 开始计时，如果超时了，`Thinker#do` 的回调函数的第一个参数会是 {@link Thinker.TimeoutError} 的实例，如果设置为 `undefined` 或者 `null` 则不计算超时，单位：毫秒
 	 * @property {Number} [debounce=5000] - 在多久时间内多次调用 `do()` 会合并为一次同步请求，单位：毫秒
 	 * @property {Number} [blockRetryInterval=5000] - 被 `canStartSyncNow()` 阻塞同步多久后再调用 `canStartSyncNow()`，单位：毫
 	 * @property {Thinker~Logger} logger - 日志收集器
-	 * @property {Storage} storage - 读写本地存储，实现了 {@link https://developer.mozilla.org/en-US/docs/Web/API/Storage Storage 接口}的对象
+	 * @property {Storage} storage - 读写本地存储，接收一个实现了 {@link https://developer.mozilla.org/en-US/docs/Web/API/Storage Storage 接口}的对象
 	 * @property {Boolean} [autoBackgroundCompletelySync=true] - 是否自动发起后台初次完整同步
 	 * @property {Number} [autoRetryRequestCount=5] - 发起同步请求失败后重试几次
 	 *
@@ -1939,7 +2010,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	ResponseEntityEmptyError.prototype = Object.create(Error.prototype);
 	ResponseEntityEmptyError.prototype.constructor = ResponseEntityEmptyError;
 	
+	/**
+	 * @class TimeoutError
+	 * @extends Error
+	 * @memberof Thinker
+	 */
+	
+	var TimeoutError = function TimeoutError() {
+	  _classCallCheck(this, TimeoutError);
+	
+	  if (typeof Error.captureStackTrace === "function") {
+	    Error.captureStackTrace(this, this.constructor);
+	  }
+	  this.name = 'TimeoutError';
+	  this.message = 'timeout';
+	};
+	
+	TimeoutError.prototype = Object.create(Error.prototype);
+	TimeoutError.prototype.constructor = TimeoutError;
+	
 	module.exports = {
+	  TimeoutError: TimeoutError,
 	  SyncFailedError: SyncFailedError,
 	  ResponseEntityEmptyError: ResponseEntityEmptyError
 	};
@@ -1997,6 +2088,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_24__;
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_25__;
 
 /***/ }
 /******/ ])
