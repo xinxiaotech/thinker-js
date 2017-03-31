@@ -484,17 +484,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function _tryToTriggerBackgroundInitializeCompletelySync(syncInfo, passInOption) {
 	      var _this6 = this;
 	
-	      if (!this.backgroundInitializeCompletelySyncSucceed && !syncInfo.background && this.initOption.autoBackgroundCompletelySync) {
+	      if (!this.backgroundSyncing && !this.backgroundInitializeCompletelySyncSucceed && !syncInfo.background && this.initOption.autoBackgroundCompletelySync) {
 	        var option = { syncAllData: true };
 	        var completelySyncInfo = {
 	          passInOptions: syncInfo.passInOptions.concat(option),
 	          isFirstTime: false,
 	          background: true
 	        };
+	        this.backgroundSyncing = true;
 	        this._doSync(completelySyncInfo, option).then(function () {
+	          _this6.backgroundSyncing = false;
 	          _this6.initOption.storage.setItem(CONSTS.INIT_COMPLETELY_SYNC_STATUS_STORAGE_KEY, 'true');
 	          _this6.trigger('backgroundInitializeCompletelySyncSucceed');
 	        }, function (err) {
+	          _this6.backgroundSyncing = false;
 	          // 吞掉，等下次同步时直接再做一次就好了
 	        });
 	      }
@@ -1325,6 +1328,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }(),
 	
 	  parseValidDate: function parseValidDate(obj) {
+	    if (!obj) return null;
 	    var date = void 0;
 	    if (Object.prototype.toString.call(obj) === '[object Date]') {
 	      date = obj;
