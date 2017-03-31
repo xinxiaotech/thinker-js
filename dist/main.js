@@ -438,8 +438,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	          isTimeout = false;
 	      if (option.timeout != null) {
 	        timeout = option.timeout;
-	      } else if (this.initOption.timeout != null) {
+	      } else if (!option.syncAllData && this.initOption.timeout != null) {
 	        timeout = this.initOption.timeout;
+	      } else if (option.syncAllData && this.initOption.syncAllDataTimeout != null) {
+	        timeout = this.initOption.syncAllDataTimeout;
 	      }
 	      if (timeout != null) {
 	        setTimeout(function () {
@@ -1590,6 +1592,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 * @property {String} [apiPrefix=https://api-ng.pomotodo.com] - 发起同步时要请求的服务器地址
 	 * @property {?Number} [timeout=undefined] - 同步的超时时间，从 `Thinker#status` 变成 `processing` 开始计时，如果超时了，`Thinker#do` 的回调函数的第一个参数会是 {@link Thinker.TimeoutError} 的实例，如果设置为 `undefined` 或者 `null` 则不计算超时，单位：毫秒
+	 * @property {?Number} [syncAllDataTimeout=undefined] - 进行完整同步时的超时时间，其他方面与 `{@link defaultOption.timeout}` 相同
 	 * @property {Number} [debounce=5000] - 在多久时间内多次调用 `do()` 会合并为一次同步请求，单位：毫秒
 	 * @property {Number} [blockRetryInterval=5000] - 被 `canStartSyncNow()` 阻塞同步多久后再调用 `canStartSyncNow()`，单位：毫
 	 * @property {Thinker~Logger} logger - 日志收集器
