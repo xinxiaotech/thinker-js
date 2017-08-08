@@ -6,10 +6,14 @@ config = {
   context: path.resolve('.'),
   entry: ['./lib/index.js'],
   resolveLoader: {
-    modulesDirectories: ['node_modules']
+    modules: [
+      path.join(__dirname, "src"),
+      "node_modules",
+    ],
+    moduleExtensions: ["-loader"],
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   module: {
     loaders: [{
