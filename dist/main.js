@@ -282,13 +282,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function _intoSync() {
 	      var _this3 = this;
 	
-	      var autoSwitchStatus = function autoSwitchStatus() {
-	        _this3._autoSwitchStatusTimer = setTimeout(function () {
-	          _this3._autoSwitchStatusTimer = null;
-	          _this3._changeStatus('waiting');
-	        }, 1000 * 2);
-	      };
-	
 	      this._callSync().then(function () {
 	        var syncCallbacks = _this3._syncCallbacks;
 	        _this3._syncCallbacks = [];
@@ -297,6 +290,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        syncCallbacks.forEach(function (cb) {
 	          return typeof cb === 'function' && cb();
 	        });
+	        var timer = setTimeout(function () {
+	          if (_this3._autoSwitchStatusTimer === timer) {
+	            _this3._autoSwitchStatusTimer = null;
+	            _this3._changeStatus('waiting');
+	          }
+	        }, 1000 * 2);
+	        _this3._autoSwitchStatusTimer = timer;
 	      }, function (err) {
 	        var syncCallbacks = _this3._syncCallbacks;
 	        _this3._syncCallbacks = [];
@@ -305,7 +305,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        syncCallbacks.forEach(function (cb) {
 	          return typeof cb === 'function' && cb(err);
 	        });
-	      }).then(autoSwitchStatus, autoSwitchStatus);
+	        var timer = setTimeout(function () {
+	          if (_this3._autoSwitchStatusTimer === timer) {
+	            _this3._autoSwitchStatusTimer = null;
+	          }
+	        }, 1000 * 2);
+	        _this3._autoSwitchStatusTimer = timer;
+	        return Promise.reject(err);
+	      });
 	    }
 	  }, {
 	    key: '_callSync',
