@@ -2,7 +2,8 @@ const _ = require('lodash')
 const path = require('path')
 const webpack = require('webpack')
 
-config = {
+const config = {
+  mode: 'production',
   context: path.resolve('.'),
   entry: ['./lib/index.js'],
   resolveLoader: {
@@ -10,16 +11,20 @@ config = {
       path.join(__dirname, "src"),
       "node_modules",
     ],
-    moduleExtensions: ["-loader"],
   },
   resolve: {
     extensions: ['.js']
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      exclude: [path.resolve(__dirname, 'node_modules')],
-      loader: 'babel',
+      exclude: {
+        test: path.resolve(__dirname, 'node_modules'),
+        exclude: [
+          path.resolve(__dirname, 'node_modules/lodash-es'),
+        ],
+      },
+      use: 'babel-loader',
     }]
   },
   output: {
@@ -30,18 +35,18 @@ config = {
     libraryTarget: 'umd'
   },
   externals: (context, request, callback) => {
-    if (/^lodash\//.test(request)) {
+    if (/^lodash-es\//.test(request)) {
       callback(null, {
         commonjs2: request,
         commonjs: request,
         amd: request,
-        root: ['_', request.replace(/^lodash\//, '')]
+        root: ['_', request.replace(/^lodash-es\//, '')]
       })
     } else {
       callback()
     }
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
 }
 
 module.exports = config
