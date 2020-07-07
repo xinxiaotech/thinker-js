@@ -3,3 +3,6 @@ node_modules
 docs
 tmp
 *.log
+
+## npm userconfig file
+.npmrc

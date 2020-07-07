@@ -1,5 +1,5 @@
 {
-  "name": "thinker-js",
+  "name": "@hackplan/thinker-js",
   "version": "1.0.1",
   "description": "Another synchronization framework",
   "main": "dist/main.js",
