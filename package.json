@@ -1,6 +1,6 @@
 {
-  "name": "@hackplan/thinker-js",
-  "version": "1.0.1",
+  "name": "thinker-js",
+  "version": "1.1.0",
   "description": "Another synchronization framework",
   "main": "dist/main.js",
   "jsnext:main": "./lib/index.js",
@@ -44,7 +44,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-plugin-transform-strict-mode": "^6.11.3",
     "babel-preset-env": "^1.7.0",
-    "bluebird": "3.4.6",
     "coffee-coverage": "^1.0.1",
     "coffee-script": "1.10.0",
     "gulp": "github:gulpjs/gulp#4.0",
@@ -53,8 +52,9 @@
     "gulp-jsdoc3": "^1.0.0",
     "jest": "^23.4.1",
     "lodash": "4.15.0",
-    "lodash-es": "^4.17.10",
     "lolex": "1.5.1",
+    "bluebird": "3.4.6",
+    "lodash-es": "^4.17.10",
     "webpack": "^4.16.1",
     "webpack-command": "^0.4.1"
   },

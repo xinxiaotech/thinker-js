@@ -32,19 +32,8 @@ const config = {
     publicPath: '/',
     filename: '[name].js',
     library: 'Thinker',
-    libraryTarget: 'umd'
-  },
-  externals: (context, request, callback) => {
-    if (/^lodash-es\//.test(request)) {
-      callback(null, {
-        commonjs2: request,
-        commonjs: request,
-        amd: request,
-        root: ['_', request.replace(/^lodash-es\//, '')]
-      })
-    } else {
-      callback()
-    }
+    libraryTarget: 'umd',
+    globalObject: 'this'
   },
   devtool: 'source-map',
 }
