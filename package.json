@@ -1,6 +1,6 @@
 {
-  "name": "thinker-js",
-  "version": "1.1.0",
+  "name": "@hackplan/thinker-js",
+  "version": "1.1.1",
   "description": "Another synchronization framework",
   "main": "dist/main.js",
   "jsnext:main": "./lib/index.js",
@@ -17,6 +17,7 @@
   "author": "c4605 <bolasblack@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "lodash-es": "^4.17.10",
     "wolfy87-eventemitter": "5.1.0"
   },
   "jest": {
@@ -54,7 +55,6 @@
     "lodash": "4.15.0",
     "lolex": "1.5.1",
     "bluebird": "3.4.6",
-    "lodash-es": "^4.17.10",
     "webpack": "^4.16.1",
     "webpack-command": "^0.4.1"
   },
