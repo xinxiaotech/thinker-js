@@ -1,6 +1,6 @@
 {
   "name": "@hackplan/thinker-js",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Another synchronization framework",
   "main": "dist/main.js",
   "jsnext:main": "./lib/index.js",
@@ -8,7 +8,7 @@
     "test": "NODE_ENV=test jest --no-cache",
     "opendoc": "gulp doc && open docs/classes.list.html",
     "start": "gulp",
-    "build": "webpack --progress"
+    "build": "webpack --progress --log-level=debug"
   },
   "keywords": [
     "synchronization",
@@ -17,6 +17,7 @@
   "author": "c4605 <bolasblack@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "^7.11.2",
     "lodash-es": "^4.17.10",
     "wolfy87-eventemitter": "5.1.0"
   },
@@ -39,24 +40,24 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
     "babel-jest": "^23.4.0",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-class-properties": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.16.0",
-    "babel-plugin-transform-strict-mode": "^6.11.3",
-    "babel-preset-env": "^1.7.0",
+    "babel-loader": "^8.1.0",
+    "bluebird": "3.7.2",
     "coffee-coverage": "^1.0.1",
     "coffee-script": "1.10.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-babel": "^7.0.1",
+    "gulp-babel": "^8.0.0",
     "gulp-coffee": "2.3.2",
     "gulp-jsdoc3": "^1.0.0",
     "jest": "^23.4.1",
     "lodash": "4.15.0",
     "lolex": "1.5.1",
-    "bluebird": "3.4.6",
-    "webpack": "^4.16.1",
-    "webpack-command": "^0.4.1"
+    "webpack": "^4.44.1",
+    "webpack-command": "^0.5.0"
   },
   "peerDependencies": {
     "lodash-es": "^4.17.10"

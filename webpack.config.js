@@ -24,7 +24,20 @@ const config = {
           path.resolve(__dirname, 'node_modules/lodash-es'),
         ],
       },
-      use: 'babel-loader',
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
+          plugins: [
+            ["@babel/plugin-proposal-class-properties"],
+            ["@babel/plugin-transform-runtime",
+              {
+                "regenerator": true
+              }
+            ]
+          ]
+        }
+      }
     }]
   },
   output: {
@@ -34,6 +47,9 @@ const config = {
     library: 'Thinker',
     libraryTarget: 'umd',
     globalObject: 'this'
+  },
+  stats: {
+    errorDetails: true, // --display-error-details
   },
   devtool: 'source-map',
 }
