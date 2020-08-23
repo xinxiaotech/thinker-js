@@ -1,6 +1,6 @@
 {
   "name": "@hackplan/thinker-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Another synchronization framework",
   "main": "dist/main.js",
   "jsnext:main": "./lib/index.js",
